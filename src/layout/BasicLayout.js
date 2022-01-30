@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header/Header";
+import Footer from "../components/Footer/Footer";
 
 const BasicLayout = (props) => {
   const [user, setUser] = useState("");
@@ -17,6 +18,7 @@ const BasicLayout = (props) => {
             <div className="content-wrapper">{props.children}</div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );
