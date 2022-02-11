@@ -12,8 +12,18 @@ const BasicRoutes = () => {
   return (
     <>
       <Switch>
-        <SimpleRoutes path="/" component={Dashboard} layout={BasicLayout} />
-        <LoginRoutes path="/Login" component={Login} layout={LoginLayout} />
+        <SimpleRoutes
+          exact
+          path="/"
+          component={Dashboard}
+          layout={BasicLayout}
+        />
+        <LoginRoutes
+          exact
+          path="/login"
+          component={Login}
+          layout={LoginLayout}
+        />
       </Switch>
     </>
   );

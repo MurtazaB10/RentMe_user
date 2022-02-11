@@ -37,7 +37,7 @@ const Header = () => {
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
-                  href="#"
+                  href="/"
                   id="navbarDropdown"
                   role="button"
                   data-bs-toggle="dropdown"
@@ -47,12 +47,12 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       Action
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       Another action
                     </a>
                   </li>
@@ -60,7 +60,7 @@ const Header = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="/">
                       Something else here
                     </a>
                   </li>
@@ -87,7 +87,9 @@ const Header = () => {
               </span>
               <span>cart</span>
             </div>
-            <Button href="/login" className="login" variant="outline-danger">Login/Signup</Button>
+            <Button href="/login" className="login" variant="outline-danger">
+              Login/Signup
+            </Button>
           </div>
         </div>
       </nav>
