@@ -56,59 +56,61 @@ function Dashboard() {
       </div>
 
       {/* Slider */}
-      <div className="slider">
-        <div className="main_head">
-          You'll love to
-          <span>take these home</span>
-        </div>
-        <div className="slide_nav">
-          <div
-            className="swipe_left"
-            role="button"
-            tabIndex="0"
-            aria-label="Previous Slide"
-            onClick={() => {
-              if (transition1 != 0) {
-                setTransition1(transition1 + 15);
-              }
-              if (transition1 == -15) {
-                setOp1(0.5);
-              }
-            }}
-            style={{ opacity: op1 }}
-          >
-            <i class="fas fa-chevron-right"></i>
+      <div className="slider_container">
+        <div className="slider">
+          <div className="main_head">
+            You'll love to
+            <span>take these home</span>
           </div>
-          <div
-            className="swipe_right"
-            role="button"
-            tabIndex="0"
-            aria-label="Next Slide"
-            onClick={() => {
-              setTransition1(transition1 - 15);
-              setOp1(1);
-            }}
-          >
-            <i class="fas fa-chevron-left"></i>
+          <div className="slide_nav">
+            <div
+              className="swipe_left"
+              role="button"
+              tabIndex="0"
+              aria-label="Previous Slide"
+              onClick={() => {
+                if (transition1 != 0) {
+                  setTransition1(transition1 + 15);
+                }
+                if (transition1 == -15) {
+                  setOp1(0.5);
+                }
+              }}
+              style={{ opacity: op1 }}
+            >
+              <i class="fas fa-chevron-right"></i>
+            </div>
+            <div
+              className="swipe_right"
+              role="button"
+              tabIndex="0"
+              aria-label="Next Slide"
+              onClick={() => {
+                setTransition1(transition1 - 15);
+                setOp1(1);
+              }}
+            >
+              <i class="fas fa-chevron-left"></i>
+            </div>
           </div>
-        </div>
-        <div className="overflow-hidden">
-          <div
-            className="slider_container"
-            style={{ transform: `translateX(${transition1}rem)` }}
-          >
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
-            <SlideComponent />
+          <div className="overflow-hidden">
+            <div
+              className="slider_container"
+              style={{ transform: `translateX(${transition1}rem)` }}
+            >
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+              <SlideComponent />
+            </div>
           </div>
         </div>
       </div>

@@ -87,7 +87,7 @@ const Header = () => {
               </span>
               <span>cart</span>
             </div>
-            <Button className="login" variant="outline-danger">Login/Signup</Button>
+            <Button href="/login" className="login" variant="outline-danger">Login/Signup</Button>
           </div>
         </div>
       </nav>
