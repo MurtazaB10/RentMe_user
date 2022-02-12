@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
+  const [show, setShow] = useState(false);
+
   return (
     <div className="main_footer">
       <div className="container">
@@ -41,13 +43,29 @@ function Footer() {
                     maintenance service. These are benefits no regular retailer
                     offers. Start renting now!
                   </p>
-                  <h2></h2>
-                  <ul>
-                    <li></li>
-                  </ul>
+                  {show && (
+                    <>
+                      <h2>
+                        <strong>
+                          We Provide All The Furniture, Appliances, And Gadgets
+                          You Will Ever Need
+                        </strong>
+                      </h2>
+                      <ul>
+                        <li></li>
+                      </ul>
+                    </>
+                  )}
                 </div>
                 <div className="read">
-                  <span>Read More </span> &nbsp;
+                  <span
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  >
+                    Read {show ? "Less" : "More"}{" "}
+                  </span>{" "}
+                  &nbsp;
                   <i class="fas fa-chevron-right"></i>
                 </div>
               </div>
@@ -162,19 +180,89 @@ function Footer() {
               <h2>Need Help ?</h2>
               <ul className="contact_options">
                 <li className="contact">
-                  <Link to="tel: 1800 201 6501" className="link">
-                    <span>1800 201 6501</span>
-                  </Link>
-                  <Link to="tel: 080 4688 2701" className="link">
-                    <span className="d-block">080 4688 2701</span>
-                    <span className="d-block">(9AM - 6PM)</span>
-                  </Link>
+                  <i class="far fa-paper-plane"></i>
+                  <a href="mailto:karun@gmail.com" className="ms-3">
+                    <span>karun@gmail.com</span>
+                  </a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </div>
+      <div className="Footer_line">
+        <div className="container">
+          <div className="block"></div>
+        </div>
+      </div>
+      <section className="footer_copyright">
+        <div className="container footer_copyright_container">
+          <div className="row">
+            <div className="col-sm-3 col-xs-12">
+              <p> Ⓒ 2022. Karun Pvt. Ltd. </p>
+            </div>
+            <div className="col-sm-6 col-xs-12">
+              <div className="footer_links">
+                <ul>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-facebook-f"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-twitter"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-linkedin-in"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-youtube"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-instagram"></i>
+                      </span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/" target="_blank">
+                      <span>
+                        <i class="fab fa-dribbble"></i>
+                      </span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="col-sm-3 col-xs-12">
+              <div className="go_up">
+                <nav>
+                  <a href="#top">
+                    <p>
+                      Go Up &nbsp;<i class="fas fa-angle-up"></i>
+                    </p>
+                  </a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

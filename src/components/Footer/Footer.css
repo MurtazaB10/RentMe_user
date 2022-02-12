@@ -24,6 +24,7 @@
   margin: 25px 0 0;
   line-height: 1.1;
   text-transform: capitalize;
+  z-index: 999;
 }
 .main_footer .upper_footer .footer_content p {
   color: #717171 !important;
@@ -86,16 +87,81 @@
 .main_footer .footer_links span {
   font-weight: 400;
 }
-/* .main_footer .footer_links .contact_options li::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  width: 19px;
-  height: 19px;
-} */
-.main_footer .footer_links .contact::before {
-  content: "\f879";
-  width: 18px;
-  height: 18px;
-  top: 4px;
+.main_footer .footer_links ul li a {
+  color: #717171;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.main_footer .Footer_line .block {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.main_footer .footer_copyright {
+  text-align: center;
+  padding: 0;
+  display: block;
+}
+.main_footer .footer_copyright .footer_copyright_container {
+  padding: 15px;
+}
+.main_footer .footer_copyright .footer_copyright_container .row {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.main_footer .footer_copyright .footer_copyright_container .footer_links {
+  line-height: 1.5;
+}
+.main_footer .footer_copyright .footer_copyright_container p {
+  color: #717171;
+  font-size: 12px;
+  text-align: left;
+  margin: 15px 0;
+  font-weight: 400;
+}
+.main_footer .footer_copyright ul {
+  margin-top: 0;
+  padding: 0;
+  margin-bottom: 10px;
+}
+.main_footer .footer_copyright ul li:first-child {
+  margin-left: 0;
+}
+.main_footer .footer_copyright ul li {
+  margin: 0;
+  display: inline-block;
+  list-style: none;
+}
+.main_footer .footer_copyright ul li a {
+  border: 1px solid #717171;
+  background-color: #f5f7fa;
+  border-radius: 50%;
+  width: 40px;
+  display: block;
+  color: #717171;
+  transform: scale(0.8);
+  text-decoration: none;
+}
+.main_footer .footer_copyright ul li a span {
+  font-size: 1.3em;
+  position: relative;
+  display: inline-block;
+  width: 2.5em;
+  height: 2.5em;
+  line-height: 2em;
+  vertical-align: middle;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main_footer .footer_copyright .go_up {
+  display: flex;
+  align-items: flex-end;
+  justify-content: end;
+  line-height: 1.5;
+}
+.main_footer .footer_copyright .go_up a {
+  text-decoration: none;
 }
