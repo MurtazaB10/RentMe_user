@@ -13,7 +13,9 @@ function Snackbar(props) {
   confirmationSnackbarMessage === "Failed to Save!" ||
   confirmationSnackbarMessage === "Invalid email or password!" ||
   confirmationSnackbarMessage === "Failed to Update!" ||
-  confirmationSnackbarMessage === "Failed to Delete!"
+  confirmationSnackbarMessage === "Failed to Delete!" ||
+  confirmationSnackbarMessage === "Password did not match." ||
+  confirmationSnackbarMessage === "Password must be at least 6 characters!"
     ? (severity = "error")
     : (severity = "success");
 

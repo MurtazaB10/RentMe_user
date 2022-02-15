@@ -1,65 +1,159 @@
-.section{
-display: flex;
-justify-content: center;
-flex-direction: column;
-min-height: 100vh;
+.section {
+  width: 100%;
+  min-height: 100vh;
 }
-.about{
-    margin-top: -15px;
-    background: url(demo.png) no-repeat left;
-    background-size: 65%;
-    background-color: rgb(255, 255, 255);
-    overflow: hidden;
-    padding: 100px 0;
+.container {
+  width: 100%;
+  display: block;
+  margin: auto;
 }
-.innerContainer{
-    width :55%;
-    float: right;
-    background-color:rgb(74, 243, 243);
-    padding: 100px ;
+.content-section {
+  float: left;
+  width: 55%;
 }
-.innerContainer h1{
+.image-section {
+  float: right;
+  width: 40%;
+}
+.image-section img {
+  width: 100%;
+  height: auto;
+}
+.content-section .title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 35px;
+}
+.content-section .content h3 {
+  margin-top: 21px;
+  color: rgb(226, 74, 74);
+  font-size: 30px;
+  padding: 10px;
+}
+.content-section .content p {
+  margin-top: 10px;
+  font-family: sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+}
+.content-section .social {
+  text-align: center;
+  margin: 40px 40px;
+}
+.content-section .social i {
+  color: #271515;
+  font-size: 50px;
+  padding: 0px 10px;
+}
+.content-section .social i:hover {
+  color: rgb(241, 231, 231);
+}
+@media screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+  }
+  .content-section {
+    float: none;
+    width: 100%;
+    display: block;
+    margin: auto;
+  }
+  .image-section {
+    float: none;
+    width: 100%;
+  }
+  .image-section img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+  .content-section .title {
     text-align: center;
-    margin-bottom: 10px;
-    font-size: 50px;
-    font-weight: 800;
-    text-decoration:underline red;
+    font-size: 19px;
+  }
+  .content-section .content .button {
+    text-align: center;
+  }
+  .content-section .content .button a {
+    padding: 9px 30px;
+  }
+  .content-section .social {
+    text-align: center;
+  }
 }
-
-.innerContainer .text{
-    font-size: 30px;
-    color: purple;
-    line-height: 30px;
-    text-align: justify;
-    margin-bottom: 40px;
+.cards-container {
+  display: grid;
+  padding: 30px;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  align-items: center;
+  grid-gap: 20px;
 }
-
-@media screen and (max-width : 1200px){
-    .innerContainer{
-        padding: 80px;
-    }
-}
-@media screen and (max-width : 1000px){
-    .about{
-        background-size: 100%;
-        padding: 100px 40px;
-    }
-    .innerContainer{
-        width: 100%;
-    }
-}
-@media screen and (max-width : 600px){
-    .about{
-        padding: 0;
-    }
-    .innerContainer{
-        padding: 60px;
-    }
-}
-.social{
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  z-index: 3;
+.top-heading {
+  top: 10px;
+  color: rgb(19, 18, 18);
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.top-heading h1 {
+  font-size: 70px;
+  font-weight: 900;
+}
+.top-heading p {
+  font-size: 30px;
+}
+.cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px 10px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.178);
+  transition: 0.1s all ease;
+}
+.cards:hover {
+  box-shadow: 35px 35px 35px rgba(0, 0, 0, 0.178);
+}
+.fa {
+  font-size: 60px;
+  border-radius: 50%;
+  padding: 10px;
+  border: 2px solid transparent;
+  color: rgb(241, 131, 131);
+}
+.Heading {
+  font-size: 60px;
+  padding: 5px 0px;
+}
+.text {
+  font-size: 30px;
+}
+@media screen and (max-width: 1400px) {
+  .cards-container {
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 0px;
+    padding: 30px;
+    top: 100px;
+  }
+}
+@media screen and (max-width: 748px) {
+  .cards {
+    padding: 20px;
+  }
+  .cards-container {
+    grid-template-columns: repeat(1, auto);
+  }
+  .cards .heading {
+    font-size: 23px;
+    font-weight: 900;
+  }
 }

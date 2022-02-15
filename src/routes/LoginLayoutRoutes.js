@@ -10,14 +10,16 @@ const LoginLayoutRoute = ({
   return (
     <Route
       {...rest}
-      render={(matchProps) =>
-        isLog ? (
+      render={
+        (matchProps) => (
+          // isLog ? (
           <Layout>
             <Component {...matchProps} />
           </Layout>
-        ) : (
-          <Redirect to="/Login" />
         )
+        // ) : (
+        //   <Redirect to="/Login" />
+        // )
       }
     />
   );

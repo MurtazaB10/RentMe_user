@@ -10,7 +10,6 @@
   margin-bottom: 25px;
 }
 .main_footer .upper_footer .footer_content {
-  height: 170px;
   overflow: hidden;
   color: #717171;
   transition: all 0.2s ease-in-out;
@@ -46,6 +45,9 @@
   color: #9e9e9e;
   font-weight: 300;
   font-size: 12px;
+}
+.main_footer .upper_footer .footer_content ul li a {
+  color: #717171;
 }
 
 .main_footer .upper_footer .read {
@@ -92,6 +94,24 @@
   font-size: 12px;
   font-weight: 400;
   text-decoration: none;
+}
+.main_footer .footer_links .chat {
+  text-decoration: none;
+  border: 1px solid #313131;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 12px;
+  max-width: 184px;
+  text-align: left;
+  display: flex;
+  width: 36%;
+}
+.main_footer .footer_links .contact_options {
+  display: block !important;
+  position: relative;
+  margin: 0 !important;
+  padding: 0 0 15px 30px;
+  padding-left: 0;
 }
 
 .main_footer .Footer_line .block {

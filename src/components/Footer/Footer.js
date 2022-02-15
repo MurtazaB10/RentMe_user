@@ -33,8 +33,8 @@ function Footer() {
                     ordering process is straightforward and efficient. You can
                     order from us in a matter of minutes from your PC or
                     smartphone. We offer speedy delivery in major Indian cities,
-                    namely Bangalore, Mumbai, Delhi, Chennai, Pune, Hyderabad,
-                    Gurgaon, and Noida.
+                    namely Indore, Bangalore, Mumbai, Delhi, Chennai, Pune,
+                    Hyderabad, Gurgaon, and Noida.
                   </p>
                   <p>
                     No matter what product you rent from us, we will provide you
@@ -51,8 +51,153 @@ function Footer() {
                           You Will Ever Need
                         </strong>
                       </h2>
+                      <p>
+                        Whether you need appliances for the house you’ve just
+                        moved into or require furniture for your home office, we
+                        have something for you.
+                      </p>
                       <ul>
-                        <li></li>
+                        <li>
+                          <a href="/">Furniture on rent</a>: We provide
+                          furniture for your living room, dining room, bedroom,
+                          kitchen, and study. We also provide home office
+                          furniture.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <a href="/">Appliances on rent</a>: We offer everyday
+                          appliances such as washing machines, microwaves,
+                          fridges, and cooktops. Our appliances are made by
+                          reputable brands like Samsung.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <a href="/">Electronics on rent</a>: Do you need the
+                          latest Android smartphone or the new iPhone? Gadget
+                          lovers will enjoy our selection of handpicked
+                          smartphones, laptops, tablets, and smart home devices.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <a href="/">Furniture & appliance packages on rent</a>
+                          : When you have an entire home to furnish, you can do
+                          it for cheap by picking our furniture or appliance
+                          packages. We offer the best deals on furniture,
+                          appliances,
+                        </li>
+                      </ul>
+                      <h2>
+                        <strong>
+                          Why Buy From A Store When You Can Rent From Us
+                          Instead!
+                        </strong>
+                      </h2>
+                      <p>
+                        Purchasing furniture, appliances, and electronics from a
+                        store is expensive. Rentish, however, makes it
+                        affordable for you to own the latest products in the
+                        market. We offer deals and benefits no retailer can
+                        match!
+                      </p>
+                      <ul>
+                        <li>
+                          <strong>Free delivery and installation</strong>: When
+                          you rent any item from us in Indore, we will deliver
+                          it to you for free. We will also install said item for
+                          you in any room in your home.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Free relocation</strong>: What happens to your
+                          rental products when you move to a different house in
+                          Indore? RentoMojo will move them to your new location
+                          in Indore or any supported major city for free!
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Product swap</strong>: Every 12 months,
+                          RentoMojo allows you to swap out your rental item for
+                          a new, different design! You get to keep trying out
+                          the latest products in the market when you rent from
+                          us.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Damage waiver</strong>: You don’t have to
+                          stress about minor damages.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Free maintenance</strong>: Your rental items
+                          will wear down with time. But, our team will maintain
+                          them for you periodically to keep them in top shape.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Hassle-free returns</strong>: Changed your
+                          mind at the time of delivery? You can cancel your
+                          order and we will give you a full deposit refund, no
+                          questions asked.
+                        </li>
+                      </ul>
+                      <h2>
+                        <strong>
+                          Make Rentish Your Go-To Service In Indore
+                        </strong>
+                      </h2>
+                      <p>
+                        Rentish gives you a chance to live a better lifestyle
+                        without emptying your wallet. Here are some reasons why
+                        we are one of India’s leading rental brands:
+                      </p>
+                      <ul>
+                        <li>
+                          <strong>Flexible plans</strong>: We give you the
+                          option to subscribe to our products, short-term or
+                          long-term. You can rent from us for a few weeks or a
+                          few years—the choice is yours.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Close early</strong>: We don’t believe in
+                          binding contracts. You can close your contract with us
+                          anytime. You only have to pay until the current usage
+                          date.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Quality checks</strong>: Quality matters to us
+                          as much as it matters to you. Every product we ship
+                          out undergoes strict quality checks. You get to use
+                          only the best, defect-free furniture, appliances, and
+                          electronics.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Excellent service</strong>: Rentish puts our
+                          customers first. We offer an excellent, reliable
+                          service in Indore. Our crew is well-trained and
+                          efficient.
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <strong>Monthly savings</strong>: Rentish’s monthly
+                          fees are much cheaper than the EMI you pay when you
+                          buy furniture, appliances, and electronics from a
+                          store. Renting from us is the smart thing to do!
+                        </li>
                       </ul>
                     </>
                   )}
@@ -179,6 +324,11 @@ function Footer() {
             <div className="footer_links">
               <h2>Need Help ?</h2>
               <ul className="contact_options">
+                <li>
+                  <a className="chat" href="/contact">
+                    Chat with us
+                  </a>
+                </li>
                 <li className="contact">
                   <i class="far fa-paper-plane"></i>
                   <a href="mailto:karun@gmail.com" className="ms-3">

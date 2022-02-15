@@ -1,0 +1,161 @@
+.contact-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+}
+.contact-section .heading{
+  padding: 30px 0;
+  font-size: 35px;
+}
+.contact-section .contact-container{
+  width: 90%;
+  min-height: 80vh;
+  background-color: aliceblue;
+  padding: 20px;
+  box-shadow: 15px 15px 15px antiquewhite;
+  border-radius: 10px;
+  display: flex;
+}
+.contact-section .contact-container .left-side-content{
+  background-color: rgb(252, 252, 252);
+  flex: 1;
+  position: relative;
+  padding: 50px;
+  border-radius: 10px;
+  color: rgb(248, 108, 108);
+}
+.contact-section .contact-container .left-side-content h1{
+  font-size: 40px;
+  padding: 10px 0px;
+}
+.contact-section .contact-container .left-side-content p{
+  font-size: 20px;
+  padding: 10px 0px;
+}
+.contact-section .contact-container .left-side-content .icon p{
+  padding: 20px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.contact-section .contact-container .left-side-content .icon p .ityped-cursor{
+  animation: blink 1s infinite;
+}
+@keyframes blink {
+  100% {
+      opacity: 0;
+  }
+}
+.contact-section .contact-container .right-side-content{
+  background-color: rgb(236, 70, 19);
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-section .contact-container .right-side-content .form-section {
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  align-items: center;
+}
+.contact-section .contact-container .right-side-content .form-section form{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 20px;
+}
+.contact-section .contact-container .right-side-content .form-section form label{
+  font-size: 22px;
+  padding: 10px 0px;
+}
+.contact-section .contact-container .right-side-content .form-section form button{
+  padding: 15px 40px;
+  border: none;
+  background-color: rgb(153, 232, 252);
+  font-size: 20px;
+  margin: 30px 0px;
+  border-radius: 5px;
+  color: rgb(87, 85, 241);
+  transition: .5s all ease-in-out;
+}
+.contact-section .contact-container .right-side-content .form-section form button:hover{
+  background-color: transparent;
+  border: 2px solid rgb(97, 229, 252);
+  color: black;
+}
+.contact-section .contact-container .right-side-content .form-section form input{
+width: 450px;
+border: none;
+background-color: azure;
+padding: 20px;
+border-radius: 5px;
+font-size: 20px;
+}
+.contact-section .contact-container .right-side-content .form-section form textarea{
+  width: 450px;
+  height: 200px;
+  max-height: 400px;
+  border: none;
+  background-color: azure;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  }
+.contact-section .contact-container .left-side-content .social-image{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.contact-section .contact-container .left-side-content .social-image .fa{
+  padding: 20px 100px;
+  font-size:25px;
+}
+@media screen and (max-width:1600px){
+  .contact-section .contact-container .left-side-content h1{
+    font-size: 30px;
+  }
+  .contact-section .contact-container .left-side-content p{
+    font-size: 20px;
+  }
+  .contact-section .contact-container .left-side-content .icon p{
+    font-size: 20px;
+  } 
+}
+@media screen and (max-width:1358px){
+  .contact-section .contact-container .left-side-content .social-image .fa{
+    padding: 20px;
+  }
+}
+@media screen and (max-width:1200px){
+  .contact-section .contact-container{
+    width: 95%;
+  }
+}
+@media screen and (max-width:1100px){
+  .contact-section .contact-container{
+    flex-direction: column;
+  }
+}
+@media screen and (max-width:1100px){
+  .contact-section .contact-container .left-side-content{
+    padding: 20px;
+  }
+  .contact-section .contact-container .left-side-content h1{
+   font-size: 22px;
+  }
+  .contact-section .contact-container .left-side-content p{
+    font-size: 22px;
+   }
+}
+@media screen and (max-width:520px){
+  .contact-section .contact-container .right-side-content .form-section{
+    flex-direction: column;
+  }
+
+}

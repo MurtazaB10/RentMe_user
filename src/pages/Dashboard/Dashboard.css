@@ -317,6 +317,7 @@
   height: auto;
   flex-shrink: 0;
   position: relative;
+  border-radius: 10px;
 }
 .feedback
   .feedback_container
@@ -326,8 +327,8 @@
   .slider_container
   .arrow {
   position: absolute;
-  right: 70px;
-  top: 0px;
+  right: 40px;
+  top: -50px;
 }
 .feedback
   .feedback_container
