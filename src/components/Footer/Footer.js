@@ -6,7 +6,7 @@ function Footer() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="main_foote">
+    <div className="main_footer">
       <div className="container">
         <div className="row">
           <div className="col-12">
