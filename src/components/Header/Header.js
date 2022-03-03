@@ -82,10 +82,12 @@ const Header = () => {
               </button>
             </form>
             <div className="ms-3 cart">
-              <span>
-                <ShoppingCartIcon />
-              </span>
-              <span>cart</span>
+              <a href="/cart">
+                <span>
+                  <ShoppingCartIcon />
+                </span>
+                <span>cart</span>
+              </a>
             </div>
             <Button href="/login" className="login" variant="outline-danger">
               Login/Signup

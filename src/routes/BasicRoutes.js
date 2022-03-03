@@ -10,6 +10,8 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import Contact from "../pages/Contact/Contact";
 import About from "../pages/About/About";
 import Profile from "../pages/Profile/Profile";
+import Cart from "../pages/Cart/Cart";
+import OnlyHeaderLayout from "../layout/OnlyHeaderLayout";
 
 const BasicRoutes = () => {
   return (
@@ -20,6 +22,12 @@ const BasicRoutes = () => {
           path="/"
           component={Dashboard}
           layout={BasicLayout}
+        />
+        <SimpleRoutes
+          exact
+          path="/cart"
+          component={Cart}
+          layout={OnlyHeaderLayout}
         />
         <SimpleRoutes
           exact
