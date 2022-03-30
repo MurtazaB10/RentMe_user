@@ -12,6 +12,7 @@ import About from "../pages/About/About";
 import Profile from "../pages/Profile/Profile";
 import Cart from "../pages/Cart/Cart";
 import OnlyHeaderLayout from "../layout/OnlyHeaderLayout";
+import Productview from "../pages/Product/Product";
 
 const BasicRoutes = () => {
   return (
@@ -21,6 +22,12 @@ const BasicRoutes = () => {
           exact
           path="/"
           component={Dashboard}
+          layout={BasicLayout}
+        />
+        <SimpleRoutes
+          exact
+          path="/product"
+          component={Productview}
           layout={BasicLayout}
         />
         <SimpleRoutes
@@ -51,7 +58,7 @@ const BasicRoutes = () => {
           exact
           path="/profile"
           component={Profile}
-          layout={BasicLayout}
+          layout={OnlyHeaderLayout}
         />
       </Switch>
     </>

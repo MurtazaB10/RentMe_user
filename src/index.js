@@ -6,8 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:8000/app/v1/";
 axios.defaults.headers.common["Authorization"] =
-  localStorage.getItem("accessToken");
-axios.defaults.headers.common["Authorization"] =
+  localStorage.getItem("accessToken") +
+  " " +
   localStorage.getItem("refreshToken");
 
 ReactDOM.render(

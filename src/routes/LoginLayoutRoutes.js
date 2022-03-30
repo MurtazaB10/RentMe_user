@@ -6,20 +6,18 @@ const LoginLayoutRoute = ({
   layout: Layout,
   ...rest
 }) => {
-  const isLog = localStorage.getItem("user");
+  const isLog = localStorage.getItem("refreshToken");
   return (
     <Route
       {...rest}
-      render={
-        (matchProps) => (
-          // isLog ? (
+      render={(matchProps) =>
+        isLog ? (
           <Layout>
             <Component {...matchProps} />
           </Layout>
+        ) : (
+          <Redirect to="/Login" />
         )
-        // ) : (
-        //   <Redirect to="/Login" />
-        // )
       }
     />
   );

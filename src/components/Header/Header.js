@@ -3,13 +3,19 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const Header = () => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState();
 
   useEffect(() => {
-    setUser(localStorage.getItem("user"));
+    setUser(localStorage.getItem("refreshToken"));
   }, []);
+
+  const logoutClick = async () => {
+    await axios.post("/logout");
+    localStorage.clear();
+  };
 
   return (
     <div className="Header" id="top">
@@ -89,9 +95,57 @@ const Header = () => {
                 <span>cart</span>
               </a>
             </div>
-            <Button href="/login" className="login" variant="outline-danger">
-              Login/Signup
-            </Button>
+            {user ? (
+              <div className="user">
+                <li className="nav-item dropdown list-unstyled">
+                  <a
+                    className="nav-link dropdown-toggle"
+                    href="/"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src={process.env.PUBLIC_URL + "/Images/male_profile.jpg"}
+                      className="ms-5"
+                      style={{
+                        width: "50px",
+                        height: "50px",
+                        borderRadius: "50%",
+                      }}
+                      alt=""
+                    />
+                  </a>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdown"
+                  >
+                    <li>
+                      <a className="dropdown-item" href="/profile">
+                        Profile
+                      </a>
+                    </li>
+                    <li>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-item"
+                        href="/"
+                        onClick={logoutClick}
+                      >
+                        Logout
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </div>
+            ) : (
+              <Button href="/login" className="login" variant="outline-danger">
+                Login/Signup
+              </Button>
+            )}
           </div>
         </div>
       </nav>

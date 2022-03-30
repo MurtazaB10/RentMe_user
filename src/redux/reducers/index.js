@@ -1,9 +1,7 @@
-import React from 'react'
+import { userReducer } from "./userReducer";
 
-function reducers() {
-  return (
-    <div>index</div>
-  )
-}
+const reducers = combineReducers({
+  user: userReducer,
+});
 
-export default index
+export default reducers;

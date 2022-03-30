@@ -24,7 +24,6 @@ function Login() {
       email,
       password,
     };
-    console.log(email + " " + password);
     const res = await axios.post("/login", loginUserData);
     console.log(res);
     if (res.data.message === "Login successfully") {
@@ -69,7 +68,7 @@ function Login() {
         <div className="form-container sign-in-container">
           <form>
             <h1>Sign in</h1>
-            <div class="social-container">
+            <div className="social-container">
               <a href="#">
                 <i className="fa fa-facebook-f"></i>
               </a>

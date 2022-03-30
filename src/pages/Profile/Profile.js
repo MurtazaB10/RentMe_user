@@ -32,24 +32,24 @@ function Profile() {
 
   const updateInfor = (e) => {
     e.preventDefault();
-    // if (user.phonenumber === phonenumber) {
-    //   setConfirmationSnackbarMessage("new phonenumber is same as the old one!");
-    //   setConfirmationSnackbarOpen(true);
-    // }
-    // try {
-    //   axios.patch(
-    //     "/user/update",
-    //     {
-    //       phonenumber: phonenumber ? phonenumber : user.phonenumber,
-    //     },
-    //     { headers: { Authorization: token } }
-    //   );
-    //   setConfirmationSnackbarMessage("Update Successfull!");
-    //   setConfirmationSnackbarOpen(true);
-    // } catch (error) {
-    //   setConfirmationSnackbarMessage("Failed to Update!");
-    //   setConfirmationSnackbarOpen(true);
-    // }
+    if (user.phonenumber === phonenumber) {
+      setConfirmationSnackbarMessage("new phonenumber is same as the old one!");
+      setConfirmationSnackbarOpen(true);
+    }
+    try {
+      axios.patch(
+        "/user/update",
+        {
+          phonenumber: phonenumber ? phonenumber : user.phonenumber,
+        },
+        { headers: { Authorization: token } }
+      );
+      setConfirmationSnackbarMessage("Update Successfull!");
+      setConfirmationSnackbarOpen(true);
+    } catch (error) {
+      setConfirmationSnackbarMessage("Failed to Update!");
+      setConfirmationSnackbarOpen(true);
+    }
   };
 
   const updatePassword = async (e) => {
@@ -91,31 +91,31 @@ function Profile() {
         <form onSubmit={updateInfor}>
           <div className="mb-3 d-flex justify-content-between formdiv">
             <div className="w-50">
-              <label htmlFor="shopname" className="form-label">
-                Shop Name
+              <label htmlFor="username" className="form-label">
+                Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="shopname"
-                name="shopname"
+                id="username"
+                name="username"
                 aria-describedby="emailHelp"
                 // defaultValue={user.shopname}
                 disabled
               />
             </div>
             <div className="w-50 ms-2">
-              <label htmlFor="shopaddress" className="form-label">
-                Shop Address
+              <label htmlFor="email" className="form-label">
+                Email
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="shopaddress"
-                name="shopaddress"
+                id="email"
+                name="email"
                 aria-describedby="emailHelp"
                 // defaultValue={user.shopaddress}
-                disabled
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -134,16 +134,16 @@ function Profile() {
               />
             </div>
             <div className="w-50 ms-2">
-              <label htmlFor="email" className="form-label">
-                Email
+              <label htmlFor="address" className="form-label">
+                Address
               </label>
               <input
-                type="email"
+                type="text"
                 className="form-control"
-                id="email"
-                name="email"
+                id="address"
+                name="address"
                 // defaultValue={user.email}
-                disabled
+                onChange={handleChange}
               />
             </div>
           </div>
