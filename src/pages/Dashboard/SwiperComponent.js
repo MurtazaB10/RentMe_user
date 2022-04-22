@@ -1,6 +1,8 @@
 import React from "react";
 
-function SwiperComponent() {
+function SwiperComponent(props) {
+  const feed = props.feed;
+  console.log(feed);
   return (
     <div className="slider_container">
       <svg

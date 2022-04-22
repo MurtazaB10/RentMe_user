@@ -7,14 +7,17 @@ import axios from "axios";
 
 const Header = () => {
   const [user, setUser] = useState();
+  const [trigger, setTrigger] = useState(true);
 
   useEffect(() => {
     setUser(localStorage.getItem("refreshToken"));
-  }, []);
+  }, [trigger]);
 
-  const logoutClick = async () => {
+  const logoutClick = async (e) => {
+    e.preventDefault();
     await axios.post("/logout");
     localStorage.clear();
+    setTrigger(!trigger);
   };
 
   return (
@@ -97,7 +100,7 @@ const Header = () => {
             </div>
             {user ? (
               <div className="user">
-                <li className="nav-item dropdown list-unstyled">
+                <li className="nav-item dropdown list-unstyled drop">
                   <a
                     className="nav-link dropdown-toggle"
                     href="/"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import Category from "./Category";
 import "./Dashboard.css";
@@ -8,12 +8,45 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import CancelScheduleSendOutlinedIcon from "@mui/icons-material/CancelScheduleSendOutlined";
 import { Link } from "react-router-dom";
 import SwiperComponent from "./SwiperComponent";
+import axios from "axios";
+import { setUser } from "../../redux/actions/userActions";
+import { useDispatch, useSelector } from "react-redux";
 
 function Dashboard() {
   const [transition1, setTransition1] = useState(0);
   const [op1, setOp1] = useState(0.5);
   const [transition2, setTransition2] = useState(0);
   const [op2, setOp2] = useState(0.5);
+  const [prod, setProd] = useState([]);
+  const [user, setUser] = useState();
+  const [feedback, setFeedback] = useState([]);
+  const [trigger, setTrigger] = useState(true);
+  const dispatch = useDispatch();
+
+  async function fetchData() {
+    try {
+      const res = await axios.post("/user/updateuser");
+      setUser(res.data.data);
+      const pro = await axios.post("/product");
+      setProd(pro.data.data);
+      const feed = await axios.get("/admin/feedback");
+      setFeedback(feed.data.data);
+      dispatch(setUser(res.data.data));
+    } catch (error) {
+      const refreshToken = localStorage.getItem("refreshToken");
+      if (error.message === "Request failed with status code 401") {
+        axios.defaults.headers.common["Authorization"] = refreshToken;
+        const result = await axios.post("/revoketoken");
+        localStorage.setItem("accessToken", result.data.data.accessToken);
+        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+      }
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [trigger]);
 
   return (
     <div className="dashboard">
@@ -98,18 +131,10 @@ function Dashboard() {
               className="slider_container"
               style={{ transform: `translateX(${transition1}rem)` }}
             >
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
-              <SlideComponent />
+              {console.log(prod)}
+              {prod.map((val, ind) => {
+                return <SlideComponent details={val} key={ind} />;
+              })}
             </div>
           </div>
         </div>
@@ -249,18 +274,9 @@ function Dashboard() {
                 className="swiper_warpper"
                 style={{ transform: `translateX(${transition2}rem)` }}
               >
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
-                <SwiperComponent />
+                {feedback.map((val, ind) => {
+                  return <SwiperComponent feed={val} key={ind} />;
+                })}
               </div>
             </div>
           </div>

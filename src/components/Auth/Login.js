@@ -93,7 +93,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <a className="my-2" href="#">
+            <a className="my-2" href="/forget">
               Forgot your password?
             </a>
             <button className="sign_button" onClick={loginFormHandler}>

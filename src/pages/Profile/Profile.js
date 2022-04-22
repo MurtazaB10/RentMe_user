@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useSelector } from "react-redux";
 import { isLength, isMatch } from "../../validation/Validation";
@@ -20,36 +20,43 @@ function Profile() {
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
     useState(false);
+  const [trigger, setTrigger] = useState(true);
 
+  const user = useSelector((state) => state.user.user);
+  console.log("use" +                     useSelector((state) => state.user.user));
   //   const { user } = auth;
   const [data, setData] = useState(initialState);
   const { phonenumber, password, cfpassword } = data;
+
+  useEffect(() => {}, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData({ ...data, [name]: value });
   };
 
+  const fetchData = () => {};
+
   const updateInfor = (e) => {
     e.preventDefault();
-    if (user.phonenumber === phonenumber) {
-      setConfirmationSnackbarMessage("new phonenumber is same as the old one!");
-      setConfirmationSnackbarOpen(true);
-    }
-    try {
-      axios.patch(
-        "/user/update",
-        {
-          phonenumber: phonenumber ? phonenumber : user.phonenumber,
-        },
-        { headers: { Authorization: token } }
-      );
-      setConfirmationSnackbarMessage("Update Successfull!");
-      setConfirmationSnackbarOpen(true);
-    } catch (error) {
-      setConfirmationSnackbarMessage("Failed to Update!");
-      setConfirmationSnackbarOpen(true);
-    }
+    // if (user.phonenumber === phonenumber) {
+    //   setConfirmationSnackbarMessage("new phonenumber is same as the old one!");
+    //   setConfirmationSnackbarOpen(true);
+    // }
+    // try {
+    //   axios.patch(
+    //     "/user/update",
+    //     {
+    //       phonenumber: phonenumber ? phonenumber : user.phonenumber,
+    //     },
+    //     { headers: { Authorization: token } }
+    //   );
+    //   setConfirmationSnackbarMessage("Update Successfull!");
+    //   setConfirmationSnackbarOpen(true);
+    // } catch (error) {
+    //   setConfirmationSnackbarMessage("Failed to Update!");
+    //   setConfirmationSnackbarOpen(true);
+    // }
   };
 
   const updatePassword = async (e) => {

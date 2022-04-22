@@ -12,7 +12,11 @@ import About from "../pages/About/About";
 import Profile from "../pages/Profile/Profile";
 import Cart from "../pages/Cart/Cart";
 import OnlyHeaderLayout from "../layout/OnlyHeaderLayout";
-import Productview from "../pages/Product/Product";
+import Productview from "../pages/Product/ProductCatalogue";
+import ProductDetails from "../pages/Product/ProductDetails";
+import Forget from "../pages/Forget_Password/Forget";
+import Reset from "../pages/Forget_Password/Reset";
+import Checkout from "../pages/Checkout/Checkout";
 
 const BasicRoutes = () => {
   return (
@@ -34,7 +38,7 @@ const BasicRoutes = () => {
           exact
           path="/cart"
           component={Cart}
-          layout={OnlyHeaderLayout}
+          layout={BasicLayout}
         />
         <SimpleRoutes
           exact
@@ -48,6 +52,18 @@ const BasicRoutes = () => {
           component={About}
           layout={BasicLayout}
         />
+        <SimpleRoutes
+          exact
+          path="/forget"
+          component={Forget}
+          layout={LoginLayout}
+        />
+        <SimpleRoutes
+          exact
+          path="/reset"
+          component={Reset}
+          layout={LoginLayout}
+        />
         <LoginRoutes
           exact
           path="/login"
@@ -59,6 +75,18 @@ const BasicRoutes = () => {
           path="/profile"
           component={Profile}
           layout={OnlyHeaderLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/checkout"
+          component={Checkout}
+          layout={BasicLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/:id"
+          component={ProductDetails}
+          layout={BasicLayout}
         />
       </Switch>
     </>
