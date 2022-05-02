@@ -25,20 +25,16 @@ function Dashboard() {
 
   async function fetchData() {
     try {
-      const res = await axios.post("/user/updateuser");
-      setUser(res.data.data);
       const pro = await axios.post("/product");
       setProd(pro.data.data);
       const feed = await axios.get("/admin/feedback");
       setFeedback(feed.data.data);
+      const res = await axios.post("/user/updateuser");
+      setUser(res.data.data);
       dispatch(setUser(res.data.data));
     } catch (error) {
-      const refreshToken = localStorage.getItem("refreshToken");
       if (error.message === "Request failed with status code 401") {
-        axios.defaults.headers.common["Authorization"] = refreshToken;
-        const result = await axios.post("/revoketoken");
-        localStorage.setItem("accessToken", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        localStorage.clear();
       }
       console.error(error);
     }
@@ -131,7 +127,6 @@ function Dashboard() {
               className="slider_container"
               style={{ transform: `translateX(${transition1}rem)` }}
             >
-              {console.log(prod)}
               {prod.map((val, ind) => {
                 return <SlideComponent details={val} key={ind} />;
               })}
@@ -216,7 +211,7 @@ function Dashboard() {
           </div>
           <div className="row">
             <div className="col-12">
-              <Link to="/" className="link">
+              <Link to="/about" className="link">
                 know more
               </Link>
             </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -9,12 +8,12 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 function Cart() {
-  const basket = useSelector((state) => state.cart.cart);
-  const user = useSelector((state) => state.user.user);
-  console.log(basket);
+  // const basket = useSelector((state) => state.cart.cart);
+  // const user = useSelector((state) => state.user.user);
+  // console.log(basket);
   const [trigger, setTrigger] = useState(true);
   const [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState(1);
+  const [total, setTotal] = useState(0);
 
   const history = useHistory();
 
@@ -22,14 +21,18 @@ function Cart() {
     try {
       const res = await axios.get("/user/getcart");
       console.log(res);
-      setCart(res.data.data.cart.items);
+      setCart(res.data.data.user.cart.items);
+      console.log("total");
+      let t = 0;
+      for (let i = 0; i < res.data.data.user.cart.items.length; i++)
+        t +=
+          res.data.data.user.cart.items[i].quantity *
+          res.data.data.user.cart.items[i].productId.rentalprice;
+      console.log(t);
+      setTotal(t);
     } catch (error) {
-      const refreshToken = localStorage.getItem("refreshToken");
       if (error.message === "Request failed with status code 401") {
-        axios.defaults.headers.common["Authorization"] = refreshToken;
-        const result = await axios.post("/revoketoken");
-        localStorage.setItem("accessToken", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        localStorage.clear();
       }
       console.error(error);
     }
@@ -40,14 +43,10 @@ function Cart() {
       const res = await axios.post("/user/addtocart", {
         productId: id,
       });
-      console.log(res);
+      setTrigger(!trigger);
     } catch (error) {
-      const refreshToken = localStorage.getItem("refreshToken");
       if (error.message === "Request failed with status code 401") {
-        axios.defaults.headers.common["Authorization"] = refreshToken;
-        const result = await axios.post("/revoketoken");
-        localStorage.setItem("accessToken", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        localStorage.clear();
       }
       console.error(error);
     }
@@ -58,14 +57,10 @@ function Cart() {
       const res = await axios.post("/user/removecart", {
         productId: id,
       });
-      console.log(res);
+      setTrigger(!trigger);
     } catch (error) {
-      const refreshToken = localStorage.getItem("refreshToken");
       if (error.message === "Request failed with status code 401") {
-        axios.defaults.headers.common["Authorization"] = refreshToken;
-        const result = await axios.post("/revoketoken");
-        localStorage.setItem("accessToken", result.data.data.accessToken);
-        localStorage.setItem("refreshToken", result.data.data.refreshToken);
+        localStorage.clear();
       }
       console.error(error);
     }
@@ -209,7 +204,7 @@ function Cart() {
             CONTINUE SHOPPING
           </TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>{`Shopping Bag(${cart.length})`}</TopText>
             <TopText>Your Wishlist(0)</TopText>
           </TopTexts>
           <TopButton type="filled" onClick={() => history.push("/checkout")}>
@@ -218,87 +213,77 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 9887463254466
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AddIcon
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      setQuantity(quantity + 1);
-                      addCart("6262220eb7810d8ee60f31d2");
-                    }}
-                  />
-                  <ProductAmount>{quantity}</ProductAmount>
-                  <RemoveIcon
-                    style={{ cursor: "pointer" }}
-                    onClick={() => {
-                      quantity > 1 && setQuantity(quantity - 1);
-                      removeCart("6262220eb7810d8ee60f31d2");
-                    }}
-                  />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
-            <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg" />
-                <Details>
-                  <ProductName>
-                    <b>Product:</b> JESSIE THUNDER SHOES
-                  </ProductName>
-                  <ProductId>
-                    <b>ID:</b> 9887463254466
-                  </ProductId>
-                  <ProductColor color="black" />
-                  <ProductSize>
-                    <b>Size:</b> 37.5
-                  </ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <AddIcon />
-                  <ProductAmount>2</ProductAmount>
-                  <RemoveIcon />
-                </ProductAmountContainer>
-                <ProductPrice>$ 30</ProductPrice>
-              </PriceDetail>
-            </Product>
+            {cart.length !== 0 ? (
+              cart.map((val, ind) => {
+                return (
+                  <>
+                    <Product key={ind}>
+                      <ProductDetail>
+                        <Image src={""} />
+                        <Details>
+                          <ProductName>
+                            <b>Product:</b> {val.productId.name}
+                          </ProductName>
+                          <ProductName>
+                            <b>Product:</b> {val.productId.description}
+                          </ProductName>
+                          {/* <ProductId>
+                          <b>ID:</b> {val.}
+                        </ProductId>
+                        <ProductColor color="black" /> 
+                        <ProductSize>
+                          <b>Size:</b> 37.5
+                        </ProductSize> */}
+                        </Details>
+                      </ProductDetail>
+                      <PriceDetail>
+                        <ProductAmountContainer>
+                          <AddIcon
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              addCart(val.productId._id);
+                            }}
+                          />
+                          <ProductAmount>{val.quantity}</ProductAmount>
+                          <RemoveIcon
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              removeCart(val.productId._id);
+                            }}
+                          />
+                        </ProductAmountContainer>
+                        <ProductPrice>
+                          ₹ {val.productId.rentalprice}
+                        </ProductPrice>
+                      </PriceDetail>
+                    </Product>
+                    <Hr key={ind - 1} />
+                  </>
+                );
+              })
+            ) : (
+              <h1>Cart is Empty</h1>
+            )}
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>₹ {total ? total : 0}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ 500.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemPrice>₹ -500.90</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
               <SummaryItemText type="total">Total</SummaryItemText>
-              <SummaryItemPrice type="total">$ 80</SummaryItemPrice>
+              <SummaryItemPrice type="total">
+                ₹ {total ? total : 0}
+              </SummaryItemPrice>
             </SummaryItem>
             <SummaryButton onClick={() => history.push("/checkout")}>
               CHECKOUT NOW

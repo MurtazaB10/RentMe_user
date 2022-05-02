@@ -2,6 +2,8 @@ import "../../../node_modules/font-awesome/css/font-awesome.min.css";
 import "./Contact.css";
 // import { init } from "ityped";
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import Snackbar from "../../components/Alert/SnackBar";
 function Contact() {
   const textref = useRef();
   const phoneref = useRef();
@@ -32,6 +34,54 @@ function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [trigger, setTrigger] = useState("");
+  const [data, setData] = useState();
+  const [confirmationSnackbarMessage, setConfirmationSnackbarMessage] =
+    useState("");
+  const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
+    useState(false);
+
+  const fetchData = async () => {
+    try {
+      const res = await axios.post("/user/updateuser");
+      console.log(res);
+      setData(res.data.data);
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        localStorage.clear();
+        setTrigger(!trigger);
+      }
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [trigger]);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      axios.post("/user/add-query", {
+        query: message,
+        email: email,
+        id: data._id,
+      });
+      setConfirmationSnackbarMessage("Query Added Successfully!");
+      setConfirmationSnackbarOpen(true);
+      setTrigger(!trigger);
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        localStorage.clear();
+        setTrigger(!trigger);
+      } else {
+        console.error(error);
+        setConfirmationSnackbarMessage(error.message);
+        setConfirmationSnackbarOpen(true);
+      }
+    }
+  };
+
   return (
     <section className="section">
       <div className="section-container">
@@ -62,7 +112,7 @@ function Contact() {
             </a>
           </div>
         </div>
-        <div className="contact-form">
+        <form onSubmit={submit} className="contact-form">
           <h2>Send Information</h2>
           <div className="formBox">
             <div className="inputBox w50">
@@ -99,8 +149,13 @@ function Contact() {
               <button type="submit">Send</button>
             </div>
           </div>
-        </div>
+        </form>
       </div>
+      <Snackbar
+        confirmationSnackbarMessage={confirmationSnackbarMessage}
+        confirmationSnackbarOpen={confirmationSnackbarOpen}
+        setConfirmationSnackbarOpen={setConfirmationSnackbarOpen}
+      />
     </section>
   );
 }

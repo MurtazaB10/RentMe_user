@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { showErrMsg, showSuccessMsg } from "./util/Notification";
-import { isLength, isMatch } from "./util/Validation";
 import Snackbar from "../../components/Alert/SnackBar";
 
 const initialState = {
   password: "",
   cf_password: "",
-  err: "",
-  success: "",
 };
 
 function Reset() {
@@ -18,9 +13,8 @@ function Reset() {
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
     useState(false);
-  const { token } = useParams();
 
-  const { password, cf_password, err, success } = data;
+  const { password, cf_password } = data;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -28,29 +22,13 @@ function Reset() {
   };
 
   const handleResetPass = async () => {
-    if (isLength(password))
-      return setData({
-        ...data,
-        err: "Password must be at least 6 characters.",
-        success: "",
-      });
-
-    if (!isMatch(password, cf_password))
-      return setData({ ...data, err: "Password did not match.", success: "" });
-
     try {
-      const res = await axios.post(
-        "/user/reset",
-        { password },
-        {
-          headers: { Authorization: token },
-        }
-      );
-
-      return setData({ ...data, err: "", success: res.data.msg });
+      const res = await axios.post("/reset-password", { password });
+      setConfirmationSnackbarMessage("Password reset successfully!");
+      setConfirmationSnackbarOpen(true);
     } catch (err) {
-      err.response.data.msg &&
-        setData({ ...data, err: err.response.data.msg, success: "" });
+      setConfirmationSnackbarMessage("Something went wrong!");
+      setConfirmationSnackbarOpen(true);
     }
   };
 
@@ -60,8 +38,6 @@ function Reset() {
         <h2>Reset Your Password</h2>
 
         <div className="row">
-          {err && showErrMsg(err)}
-          {success && showSuccessMsg(success)}
           <label htmlFor="password">Password</label>
           <input
             type="password"

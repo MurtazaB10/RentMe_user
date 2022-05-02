@@ -17,13 +17,16 @@ const Header = () => {
     e.preventDefault();
     await axios.post("/logout");
     localStorage.clear();
-    setTrigger(!trigger);
+    window.location.reload();
   };
 
   return (
-    <div className="Header" id="top">
+    <div
+      className="Header d-flex align-items-center justify-content-center"
+      id="top"
+    >
       <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="w-75 container-fluid">
+        <div className="container-fluid">
           <a className="navbar-brand" href="/">
             <img
               className="w-100"
@@ -42,40 +45,6 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-5 mb-2 mb-lg-0">
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="/"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="/">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
             <form className="d-flex position-relative">
               <input
                 className="form-control me-2 search"
@@ -99,50 +68,34 @@ const Header = () => {
               </a>
             </div>
             {user ? (
-              <div className="user">
-                <li className="nav-item dropdown list-unstyled drop">
-                  <a
-                    className="nav-link dropdown-toggle"
-                    href="/"
-                    id="navbarDropdown"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
+              <div className="user ms-5">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    onClick={() => {
+                      window.location.pathname = "/profile";
+                    }}
+                    type="button"
+                    class="btn btn-primary"
                   >
-                    <img
-                      src={process.env.PUBLIC_URL + "/Images/male_profile.jpg"}
-                      className="ms-5"
-                      style={{
-                        width: "50px",
-                        height: "50px",
-                        borderRadius: "50%",
-                      }}
-                      alt=""
-                    />
-                  </a>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdown"
+                    Profile
+                  </button>
+                  <button
+                    onClick={() => {
+                      window.location.pathname = "/order";
+                    }}
+                    type="button"
+                    class="btn btn-primary"
                   >
-                    <li>
-                      <a className="dropdown-item" href="/profile">
-                        Profile
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a
-                        className="dropdown-item"
-                        href="/"
-                        onClick={logoutClick}
-                      >
-                        Logout
-                      </a>
-                    </li>
-                  </ul>
-                </li>
+                    Order
+                  </button>
+                  <button
+                    onClick={logoutClick}
+                    type="button"
+                    class="btn btn-primary"
+                  >
+                    Logout
+                  </button>
+                </div>
               </div>
             ) : (
               <Button href="/login" className="login" variant="outline-danger">

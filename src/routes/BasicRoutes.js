@@ -17,6 +17,8 @@ import ProductDetails from "../pages/Product/ProductDetails";
 import Forget from "../pages/Forget_Password/Forget";
 import Reset from "../pages/Forget_Password/Reset";
 import Checkout from "../pages/Checkout/Checkout";
+import History from "../pages/Order/History";
+import Feedback from "../pages/Feedback/Feedback";
 
 const BasicRoutes = () => {
   return (
@@ -26,18 +28,6 @@ const BasicRoutes = () => {
           exact
           path="/"
           component={Dashboard}
-          layout={BasicLayout}
-        />
-        <SimpleRoutes
-          exact
-          path="/product"
-          component={Productview}
-          layout={BasicLayout}
-        />
-        <SimpleRoutes
-          exact
-          path="/cart"
-          component={Cart}
           layout={BasicLayout}
         />
         <SimpleRoutes
@@ -63,6 +53,30 @@ const BasicRoutes = () => {
           path="/reset"
           component={Reset}
           layout={LoginLayout}
+        />
+        <SimpleRoutes
+          exact
+          path="/feedback"
+          component={Feedback}
+          layout={LoginLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/product"
+          component={Productview}
+          layout={BasicLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/order"
+          component={History}
+          layout={BasicLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/cart"
+          component={Cart}
+          layout={BasicLayout}
         />
         <LoginRoutes
           exact

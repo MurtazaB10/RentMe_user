@@ -329,6 +329,11 @@ function Footer() {
                     Chat with us
                   </a>
                 </li>
+                <li>
+                  <a className="chat" href="/feedback">
+                    Feedback
+                  </a>
+                </li>
                 <li className="contact">
                   <i class="far fa-paper-plane"></i>
                   <a href="mailto:karun@gmail.com" className="ms-3">

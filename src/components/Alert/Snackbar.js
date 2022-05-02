@@ -17,7 +17,13 @@ function Snackbar(props) {
   confirmationSnackbarMessage === "Password did not match." ||
   confirmationSnackbarMessage === "Password must be at least 6 characters!" ||
   confirmationSnackbarMessage === "Something went wrong!" ||
-  confirmationSnackbarMessage === "Invalid email!"
+  confirmationSnackbarMessage === "Invalid email!" ||
+  confirmationSnackbarMessage === "Out of Stock!" ||
+  confirmationSnackbarMessage === "Invalid OTP!" ||
+  confirmationSnackbarMessage === "otp not genrerated yet " ||
+  confirmationSnackbarMessage === "invalid OTP " ||
+  confirmationSnackbarMessage === "already verified " ||
+  confirmationSnackbarMessage === ""
     ? (severity = "error")
     : (severity = "success");
 

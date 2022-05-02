@@ -1,5 +1,3 @@
-import { isEmail } from "./util/Validation";
-import { showErrMsg, showSuccessMsg } from "./util/Notification";
 import "./Forget.css";
 import axios from "axios";
 import React, { useState } from "react";
@@ -20,7 +18,7 @@ function Forget() {
   };
   const forgotPassword = async () => {
     try {
-      const res = await axios.post("/user/forgot-password", { data });
+      const res = await axios.post("/forgot-password", { email: data });
       setConfirmationSnackbarMessage(
         "Password update link is sent on your registered email"
       );

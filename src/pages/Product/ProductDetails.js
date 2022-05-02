@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
-import AddIcon from "@material-ui/icons/Add";
-// import ProductImage from './ProductImage';
-import RemoveIcon from "@material-ui/icons/Remove";
-import { useDispatch, useSelector } from "react-redux";
 import Gallery from "react-amazon-gallery";
-import image from "./details";
-// import { Row, Col } from "antd";
-import { ButtonGroup, Button } from "@material-ui/core";
 import { useParams } from "react-router-dom";
+import axios from "axios";
+import Snackbar from "../../components/Alert/SnackBar";
+
 function ProductDetails() {
   let image = [
     "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
@@ -17,23 +13,50 @@ function ProductDetails() {
   ];
   const params = useParams();
   const [id, setId] = useState(params.id ? params.id : "");
+  const [data, setData] = useState();
+  const [confirmationSnackbarMessage, setConfirmationSnackbarMessage] =
+    useState("");
+  const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
+    useState(false);
+
   async function fetchData() {
     try {
-      // const res = await axios.post(`/nurse/patientDetails/${id}`);
-      // const result = await axios.get("nurse/dashboard");
-      // const res2 = await axios.get("doctor/list");
-      // dispatch(setDoctorsList(res2.data.data));
-      // dispatch(setPatientsList(result.data.data.patient_list));
-      // dispatch(setPatientInfo(res.data.data));
+      const res = await axios.post(`/product`);
+      const fil = res.data.data.filter((val) => {
+        return val._id === id;
+      });
+      console.log(fil);
+      setData(fil);
     } catch (error) {
       console.error(error);
+    }
+  }
+
+  async function addCart(id) {
+    if (data && data[0].quantity > 0) {
+      try {
+        const res = await axios.post("/user/addtocart", {
+          productId: id,
+        });
+        console.log(res);
+        setConfirmationSnackbarMessage("Product added to cart successfully!");
+        setConfirmationSnackbarOpen(true);
+      } catch (error) {
+        if (error.message === "Request failed with status code 401") {
+          localStorage.clear();
+        }
+        console.error(error);
+      }
+    } else {
+      setConfirmationSnackbarMessage("Out of Stock!");
+      setConfirmationSnackbarOpen(true);
     }
   }
 
   useEffect(() => {
     fetchData();
   }, [id]);
-  const [itemCount, setItemCount] = React.useState(1);
+
   return (
     <div className="container container-fluid">
       <div className="row f-flex justify-content-around">
@@ -43,60 +66,21 @@ function ProductDetails() {
           <hr />
         </div>
         <div className="col-12 col-lg-5 mt-5">
-          <h3>onn. 32” className HD (720P) LED Roku Smart TV (100012589)</h3>
-          <p id="product_id">Product # sklfjdk35fsdf5090</p>
+          <h3>{data && data[0].name}</h3>
           <hr />
 
           <p id="product_price">
-            <span>Deposit</span> $108.00
+            <span>Deposit</span> ₹ {data && data[0].deposit}
           </p>
           <p id="product_price">
-            <span>Amount</span> $108.00
+            <span>Amount</span> ₹ {data && data[0].rentalprice}
           </p>
           <hr />
-          <div className="quanity-group">
-            Quantity:
-            <div style={{ display: "block", paddingBottom: 10 }}>
-              <div>
-                <ButtonGroup>
-                  <Button
-                    style={{ border: "1px solid", backgroundColor: "aqua" }}
-                    onClick={() => {
-                      setItemCount(Math.max(itemCount - 1, 0));
-                    }}
-                  >
-                    {" "}
-                    <RemoveIcon fontSize="small" />
-                  </Button>
-                  <input
-                    type="number"
-                    value={itemCount}
-                    placeholder="1"
-                    style={{
-                      width: "100px",
-                      marginLeft: "3px",
-                      marginRight: "3px",
-                      border: "1px solid",
-                      textAlign: "center",
-                    }}
-                  />
-                  <Button
-                    style={{ border: "1px solid", backgroundColor: "red" }}
-                    onClick={() => {
-                      setItemCount(itemCount + 1);
-                    }}
-                  >
-                    {" "}
-                    <AddIcon fontSize="small" />
-                  </Button>
-                </ButtonGroup>
-              </div>
-            </div>
-          </div>
           <button
             type="button"
             id="cart_btn"
             className="btn btn-primary d-inline ml-4"
+            onClick={() => addCart(data && data[0]._id)}
           >
             Add to Cart
           </button>
@@ -104,29 +88,27 @@ function ProductDetails() {
           <hr />
 
           <p>
-            Status: <span id="stock_status">In Stock</span>
+            Status:{" "}
+            <span id="stock_status">
+              {data && data[0].quantity > 0 ? "In Stock" : "Out of Stock"}
+            </span>
           </p>
           <p id="product_seller mb-3">
-            Manufacturer <strong>Amazon</strong>
-          </p>
-          <p id="product_seller mb-3">
-            Quantity <strong>178</strong>
+            Manufacturer <strong>{data && data[0].manufacturer}</strong>
           </p>
 
           <hr />
 
           <h4 className="mt-2">Description:</h4>
-          <p>
-            Binge on movies and TV episodes, news, sports, music and more! We
-            insisted on 720p High Definition for this 32" LED TV, bringing out
-            more lifelike color, texture and detail. We also partnered with Roku
-            to bring you the best possible content with thousands of channels to
-            choose from, conveniently presented through your own custom home
-            screen.
-          </p>
+          <p>{data && data[0].description}</p>
           <hr />
         </div>
       </div>
+      <Snackbar
+        confirmationSnackbarMessage={confirmationSnackbarMessage}
+        confirmationSnackbarOpen={confirmationSnackbarOpen}
+        setConfirmationSnackbarOpen={setConfirmationSnackbarOpen}
+      />
     </div>
   );
 }
