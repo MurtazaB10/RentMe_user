@@ -19,6 +19,7 @@ import checkoutFormModel from "./FormModel/checkoutFormModel";
 import formInitialValues from "./FormModel/formInitialValues";
 
 import useStyles from "./Cstyles";
+import axios from "axios";
 
 const steps = ["Shipping address", "Review your order"];
 const { formId, formField } = checkoutFormModel;
@@ -74,32 +75,60 @@ export default function CheckoutPage() {
       document.body.appendChild(script);
     });
   };
-  useEffect(() => {
-    loadScript("https://checkout.razorpay.com/v1/checkout.js");
-  });
+  // useEffect(() => {
+  //   loadScript("https://checkout.razorpay.com/v1/checkout.js");
+  // });
   const displayRazorpay = () => {
     if (isLastStep) {
-      var options = {
-        key: "rzp_test_R1Q6qOfISyl0KX",
-        key_secret: "EzvGAZ2YIFGQDHCgVWtufD7T",
-        amount: "100",
-        currency: "INR",
-        name: "Rentish",
-        description: "Order",
-        handler: function (response) {
-          alert(response.razorpay_payment_id);
-          alert("PAyment Successfully");
-        },
-        prefill: {
-          name: "hittesh",
-          email: "karunmourya4@gmail.com",
-          contact: "7869800141",
-        },
+      const script = document.createElement("script");
+      console.log("in display");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onerror = () => {
+        alert("Razorpay SDK failed to load. Are you online?");
       };
-      var pay = new window.Razorpay(options);
-      pay.open();
-    } else {
-      return;
+      script.onload = async () => {
+        console.log("in on");
+        try {
+          const res = await axios.post("/create-order", {
+            amount: 1,
+          });
+          const { amount, id: order_id, currency } = res.data.data;
+          const res1 = await axios.get("/get-razorpay-key");
+          const { key: razorpayKey } = res1.data.data;
+          var options = {
+            key: razorpayKey,
+            amount: amount.toString(),
+            currency: currency,
+            name: "Rentish",
+            description: "Order",
+            order_id: order_id,
+            handler: async function (response) {
+              const result = await axios.post("/pay-order", {
+                amount: amount,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpayOrderId: response.razorpay_order_id,
+                razorpaySignature: response.razorpay_signature,
+              });
+              alert(result.data.msg);
+              alert("Payment Successfully");
+              window.location.href = "/";
+            },
+            prefill: {
+              name: "hittesh",
+              email: "karunmourya4@gmail.com",
+              contact: "7869800141",
+            },
+          };
+          const paymentObject = new window.Razorpay(options);
+          paymentObject.open();
+        } catch (error) {
+          if (error.message === "Request failed with status code 401") {
+            localStorage.clear();
+          }
+          console.error(error);
+        }
+      };
+      document.body.appendChild(script);
     }
   };
 
