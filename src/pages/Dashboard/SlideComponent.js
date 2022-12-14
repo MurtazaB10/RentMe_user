@@ -24,8 +24,8 @@ function SlideComponent(props) {
   return (
     <div className="swiper_slide">
       <Link to="/" target="_blank" className="text-decoration-none">
-        <img src={process.env.PUBLIC_URL + "/Images/sample1.jpg"} />
-        <h3>{det.description}</h3>
+        <img src={det.image[0].url} />
+        <h3>{det.name}</h3>
         <ul>
           <li>
             <p>

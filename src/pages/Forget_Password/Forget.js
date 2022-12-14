@@ -23,7 +23,7 @@ function Forget() {
         "Password update link is sent on your registered email"
       );
       setConfirmationSnackbarOpen(true);
-      history.push("/reset");
+      // history.push("/reset");
     } catch (err) {
       setConfirmationSnackbarMessage("Invalid email!");
       setConfirmationSnackbarOpen(true);

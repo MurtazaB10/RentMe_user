@@ -329,7 +329,7 @@ function Profile() {
         {userData && !userData.phonenumber.isVer && (
           <div className="verify personal m-5">
             <h5 className="heading heading2">Number Verification</h5>
-            <form onSubmit={verifyNumber} method="POST">
+            <div>
               <div className="mb-3 formdiv w-100">
                 <div>
                   <label htmlFor="number" className="form-label">
@@ -348,16 +348,16 @@ function Profile() {
               <button className="btn btn-primary" onClick={sendNumberOTP}>
                 Send OTP
               </button>
-              <button type="submit" className="ms-5 btn btn-primary">
+              <button onClick={verifyNumber} className="ms-5 btn btn-primary">
                 Verify
               </button>
-            </form>
+            </div>
           </div>
         )}
         {userData && !userData.email.isVer && (
           <div className="personal verify m-5">
             <h5 className="heading heading2">Email Verification</h5>
-            <form onSubmit={verifyEmail} method="POST">
+            <div>
               <div className="mb-3 d-flex justify-content-between">
                 <div className="w-100">
                   <label htmlFor="email" className="form-label">
@@ -376,10 +376,10 @@ function Profile() {
               <button className="btn btn-primary" onClick={sendEmailOTP}>
                 Send OTP
               </button>
-              <button type="submit" className="ms-5 btn btn-primary">
+              <button onClick={verifyEmail} className="ms-5 btn btn-primary">
                 Verify
               </button>
-            </form>
+            </div>
           </div>
         )}
       </div>

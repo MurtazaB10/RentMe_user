@@ -61,10 +61,10 @@ const Header = () => {
             </form>
             <div className="ms-3 cart">
               <a href="/cart">
-                <span>
+                <span style={{ color: "#f7de36" }}>
                   <ShoppingCartIcon />
                 </span>
-                <span>cart</span>
+                <span style={{ color: "#f7de36" }}>cart</span>
               </a>
             </div>
             {user ? (

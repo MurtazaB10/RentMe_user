@@ -5,15 +5,10 @@ import axios from "axios";
 import Snackbar from "../../components/Alert/SnackBar";
 
 function ProductDetails() {
-  let image = [
-    "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
-    "https://www.akamai.com/site/im-demo/perceptual-standard.jpg?imbypass=true",
-    "https://st.depositphotos.com/1006706/2671/i/600/depositphotos_26715369-stock-photo-which-way-to-choose-3d.jpg",
-    "https://www.slazzer.com/static/images/home-page/individual-image-upload.jpg",
-  ];
   const params = useParams();
   const [id, setId] = useState(params.id ? params.id : "");
   const [data, setData] = useState();
+  const [image, setImage] = useState();
   const [confirmationSnackbarMessage, setConfirmationSnackbarMessage] =
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
@@ -25,7 +20,13 @@ function ProductDetails() {
       const fil = res.data.data.filter((val) => {
         return val._id === id;
       });
+      let arr = [];
       console.log(fil);
+      for (let index = 0; index < fil[0].image.length; index++) {
+        arr[index] = fil[0].image[index].url;
+        
+      }
+      setImage(arr);
       setData(fil);
     } catch (error) {
       console.error(error);
@@ -62,9 +63,10 @@ function ProductDetails() {
       <div className="row f-flex justify-content-around">
         <hr />
         <div className="col-12 col-lg-5 mt-5" id="product_image">
-          <Gallery images={image} width="120%" />
+          <Gallery images={image && image} />
           <hr />
         </div>
+        {console.log(data && data[0])}
         <div className="col-12 col-lg-5 mt-5">
           <h3>{data && data[0].name}</h3>
           <hr />

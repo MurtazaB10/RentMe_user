@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Snackbar from "../../components/Alert/SnackBar";
+import { useParams } from "react-router-dom";
 
 const initialState = {
   password: "",
@@ -9,6 +10,10 @@ const initialState = {
 
 function Reset() {
   const [data, setData] = useState(initialState);
+  const params = useParams();
+  const [id, setId] = useState(params.id ? params.id : "");
+  const [token, setToken] = useState(params.token ? params.token : "");
+  console.log(id,token);
   const [confirmationSnackbarMessage, setConfirmationSnackbarMessage] =
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
@@ -23,7 +28,8 @@ function Reset() {
 
   const handleResetPass = async () => {
     try {
-      const res = await axios.post("/reset-password", { password });
+      const res = await axios.post("/reset-password", { password ,id,token});
+    console.log(res);
       setConfirmationSnackbarMessage("Password reset successfully!");
       setConfirmationSnackbarOpen(true);
     } catch (err) {
@@ -97,7 +103,7 @@ export default Reset;
 //                     <TextInput name="password"
 //         type="password"
 //         label="Confirm password"
-//         placeholder="********"
+//         placeholder="****"
 //         icon={<FiLock/>}
 //         />
 //                 <ButtonGroup>

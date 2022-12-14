@@ -14,6 +14,7 @@ function Cart() {
   const [trigger, setTrigger] = useState(true);
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
+  const [duration, setDuration] = useState();
 
   const history = useHistory();
 
@@ -23,11 +24,12 @@ function Cart() {
       console.log(res);
       setCart(res.data.data.user.cart.items);
       console.log("total");
-      let t = 0;
-      for (let i = 0; i < res.data.data.user.cart.items.length; i++)
+      let t = new Number(0);
+      for (let i = 0; i < res.data.data.user.cart.items.length; i++){
         t +=
-          res.data.data.user.cart.items[i].quantity *
-          res.data.data.user.cart.items[i].productId.rentalprice;
+          (res.data.data.user.cart.items[i].quantity *
+          res.data.data.user.cart.items[i].productId.rentalprice * res.data.data.user.cart.items[i].duration + res.data.data.user.cart.items[i].productId.deposit);
+        }
       console.log(t);
       setTotal(t);
     } catch (error) {
@@ -56,6 +58,22 @@ function Cart() {
     try {
       const res = await axios.post("/user/removecart", {
         productId: id,
+      });
+      setTrigger(!trigger);
+    } catch (error) {
+      if (error.message === "Request failed with status code 401") {
+        localStorage.clear();
+      }
+      console.error(error);
+    }
+  }
+
+  async function changeDuration(id) {
+    try {
+      console.log(duration);
+      const res = await axios.post("/duration", {
+        productId: id,
+        isdurationincreased: duration,
       });
       setTrigger(!trigger);
     } catch (error) {
@@ -207,7 +225,7 @@ function Cart() {
             <TopText>{`Shopping Bag(${cart.length})`}</TopText>
             <TopText>Your Wishlist(0)</TopText>
           </TopTexts>
-          <TopButton type="filled" onClick={() => history.push("/checkout")}>
+          <TopButton type="filled" onClick={() => history.push("/policies")}>
             CHECKOUT NOW
           </TopButton>
         </Top>
@@ -215,17 +233,15 @@ function Cart() {
           <Info>
             {cart.length !== 0 ? (
               cart.map((val, ind) => {
+                console.log(val);
                 return (
                   <>
                     <Product key={ind}>
                       <ProductDetail>
-                        <Image src={""} />
+                        <Image src={val.productId.image[0].url} />
                         <Details>
                           <ProductName>
                             <b>Product:</b> {val.productId.name}
-                          </ProductName>
-                          <ProductName>
-                            <b>Product:</b> {val.productId.description}
                           </ProductName>
                           {/* <ProductId>
                           <b>ID:</b> {val.}
@@ -238,6 +254,7 @@ function Cart() {
                       </ProductDetail>
                       <PriceDetail>
                         <ProductAmountContainer>
+                          <p style={{marginTop: '1.3rem',marginRight: "1rem"}}>Quantity: </p>
                           <AddIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
@@ -252,8 +269,31 @@ function Cart() {
                             }}
                           />
                         </ProductAmountContainer>
+                        <ProductAmountContainer>
+                          <p style={{marginTop: '1.3rem',marginRight: "1rem"}}>Duration: </p>
+                          <AddIcon
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setDuration(true)
+                              changeDuration(val.productId._id);
+                            }}
+                          />
+                          <ProductAmount>{val.duration}</ProductAmount>
+                          <RemoveIcon
+                            style={{ cursor: "pointer" }}
+                            onClick={() => {
+                              setDuration(false)
+                              changeDuration(val.productId._id);
+                            }}
+                          />
+                        </ProductAmountContainer>
                         <ProductPrice>
+                          <span style={{marginRight: "1rem"}}>Rental Price: </span>
                           ₹ {val.productId.rentalprice}
+                        </ProductPrice>
+                        <ProductPrice>
+                          <span style={{marginRight: "1rem"}}>Deposit: </span>
+                          ₹ {val.productId.deposit}
                         </ProductPrice>
                       </PriceDetail>
                     </Product>
@@ -285,7 +325,7 @@ function Cart() {
                 ₹ {total ? total : 0}
               </SummaryItemPrice>
             </SummaryItem>
-            <SummaryButton onClick={() => history.push("/checkout")}>
+            <SummaryButton onClick={() => history.push("/policies")}>
               CHECKOUT NOW
             </SummaryButton>
           </Summary>

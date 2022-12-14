@@ -11,6 +11,7 @@ const History = () => {
       const res = await axios.get("/user/order", {
         id: user._id,
       });
+      console.log(res);
       setData(res.data.data);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
@@ -28,8 +29,8 @@ const History = () => {
   const data = {
     columns: [
       {
-        label: "UID",
-        field: "id",
+        label: "Order Id",
+        field: "orderId",
         sort: "asc",
       },
       {

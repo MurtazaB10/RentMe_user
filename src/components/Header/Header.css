@@ -1,5 +1,8 @@
+.Header {
+  background-color: cadetblue;
+}
 .navbar-brand {
-  width: 15rem;
+  width: 6rem;
 }
 
 .search {
@@ -39,4 +42,11 @@
 .login {
   margin-left: 1.5rem;
   border-radius: 10px;
+  border-color: #ebd700;
+  color: #ebd700;
+}
+.login:hover {
+  background-color: #ebd700;
+  color: #000;
+  border-color: #ebd700;
 }

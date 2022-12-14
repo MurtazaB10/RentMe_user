@@ -15,7 +15,9 @@ function ProductDetails(props) {
       for (let i = 0; i < res.data.data.user.cart.items.length; i++)
         t +=
           res.data.data.user.cart.items[i].quantity *
-          res.data.data.user.cart.items[i].productId.rentalprice;
+            res.data.data.user.cart.items[i].productId.rentalprice *
+            res.data.data.user.cart.items[i].duration +
+          res.data.data.user.cart.items[i].productId.deposit;
       setTotal(t);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
@@ -34,11 +36,11 @@ function ProductDetails(props) {
     <List disablePadding>
       {cart.map((product) => (
         <ListItem className={classes.listItem} key={product.productId.name}>
-          <ListItemText primary="name" secondary={product.productId.name} />
-          <ListItemText primary="quantity" secondary={product.quantity} />
-          <Typography variant="body2">
-            ₹ {product.productId.rentalprice}
-          </Typography>
+          <ListItemText primary="Name" secondary={product.productId.name} />
+          <ListItemText primary="Quantity" secondary={product.quantity} />
+          <ListItemText primary="Duration" secondary={product.duration} />
+          <ListItemText primary="Rental Price" secondary={`₹ ${product.productId.rentalprice}`} />
+          <ListItemText primary="Deposit" secondary={`₹ ${product.productId.deposit}`} />
         </ListItem>
       ))}
       <ListItem className={classes.listItem}>

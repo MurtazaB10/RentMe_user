@@ -1,0 +1,163 @@
+
+.policy{
+  vertical-align: text-bottom;
+  line-height: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-top: 25px; */
+}
+.checkarea{
+  margin-left: 150px;
+}
+.react-tabs {
+    display: flex;
+    margin-left: 150px;
+    width: 1000px;
+    height: fit-content;
+    border: 1px solid #3c3e43;
+    color: rgb(14, 1, 1);
+    background: #fdfdfd;
+  }
+  
+  .react-tabs__tab-list {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    color: rgb(11, 0, 0);
+    background: #fdfdfd;
+  }
+  
+  .react-tabs__tab {
+    height: 100px;
+    list-style: none;
+    padding: 90px;
+    cursor: pointer;
+    color: #bbb;
+  }
+  
+  .react-tabs__tab--selected {
+    background: #f0f4fc;
+    border-color: #010712;
+    width: 270px;
+    border-left: 4px solid #4cedff;
+    color: rgb(47, 90, 229);
+  }
+  
+  .react-tabs__tab-panel {
+    display: none;
+    width: 3000px;
+  }
+  
+  .react-tabs__tab-panel--selected {
+    display: block;
+  }
+  
+  .react-tabs__tab {
+    padding-left: 70px;
+  }
+  
+  .react-tabs__tab--selected {
+    padding-left: 70px;
+  }
+  
+  .panel-content {
+    text-align: left;
+  }
+  
+/* .user_support{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    color: #252644;
+}
+
+.user_message > h1{
+    position: absolute;
+    width: 349.6px;
+    height: 39.33px;
+    left: 350px;
+    top: 20px;
+    
+    font-family: 'Maven Pro';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32.7751px;
+    line-height: 39px;
+    
+    color: #252644;
+}
+.user_message > p{
+    position: absolute;
+width: 587.77px;
+height: 44.79px;
+left: 220px;
+top: 60px;
+
+font-family: 'Maven Pro';
+font-style: normal;
+font-weight: 400;
+font-size: 17.39px;
+line-height: 20px;
+text-align: center;
+
+color: rgba(42, 44, 65, 0.7);
+
+}
+.user_message > textarea{
+position: absolute;
+width: 700px;
+height: 280px;
+left: 170px;
+top: 140px;
+background: #F4F6F9;
+border: 2.18501px solid #C8C8C8;
+box-sizing: border-box;
+border-radius: 15.2951px;
+text-align:left;
+}
+.user_message > button{
+    position: absolute;
+    width: 105.97px;
+    height: 38.24px;
+    left: 770px;
+    top: 450px;
+    background: #FFBE00;
+    box-shadow: 0px 10px 30px rgba(255, 190, 0, 0.4);
+    border-radius: 15px;
+}
+.info{
+    position: absolute;
+width: 800px;
+height: 42.61px;
+left: 180px;
+top: 600px;
+
+font-family: 'Maven Pro';
+font-style: normal;
+font-weight: 500;
+color: #252644;
+}
+
+.acc_title{
+    position: absolute;
+width: 800px;
+height: 42.61px;
+left: 220px;
+top: 520px;
+
+font-family: 'Maven Pro';
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 36px;
+
+color: #252644;
+} */

@@ -3,23 +3,7 @@ import { isLength, isMatch } from "../../validation/Validation";
 import Snackbar from "../../components/Alert/SnackBar";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-const data1 = [
-  {
-    Name: "Karun",
-    Product: "Narzo",
-    Description: "Quanlity is very good",
-  },
-  {
-    Name: "Murtaza",
-    Product: "Narzo",
-    Description: "Quanlity is very good",
-  },
-  {
-    Name: "Khushhal",
-    Product: "Narzo",
-    Description: "Quanlity is very good",
-  },
-];
+
 const initialState = {
   username: "",
   email: "",
@@ -115,32 +99,7 @@ const Feedback = () => {
               />
             </div>
           </div>
-          <div className="mb-3 d-flex justify-content-between formdiv">
-            <div className="w-50">
-              <label htmlFor="productname" className="form-label">
-                Product Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="productname"
-                name="productname"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="w-50 ms-2">
-              <label htmlFor="orderid" className="form-label">
-                Order ID
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="orderid"
-                name="orderid"
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+      
           <div className="mb-3 d-flex justify-content-between formdiv">
             <div className="w-100">
               <label htmlFor="  details" className="form-label">
@@ -166,30 +125,23 @@ const Feedback = () => {
           <thead>
             <tr>
               <th scope="col">Date</th>
-              <th scope="col">Order Number</th>
               <th scope="col">Customer Name</th>
-              <th scope="col">Products</th>
               <th scope="col">Feedback</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
+           {userData&&userData.map((val,index)=>{
+             return  <tr key={index}>
+             <th scope="row">
+                {val.date.substring(0, 10)}
+             </th>
+             <td>
+               {val.user.username}
+             </td>
+             <td>{val.querymessage}</td>
+           </tr>
+           })}
+          
           </tbody>
         </table>
       </div>

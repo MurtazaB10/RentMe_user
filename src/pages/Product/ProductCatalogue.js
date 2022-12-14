@@ -104,9 +104,8 @@ const Productview = () => {
               <div className="row gy-4 py-5">
                 {userData &&
                 userData.email.isVer &&
-                userData.phonenumber.isVer &&
-                userData.document &&
-                userData.document.isVer ? (
+                userData.phonenumber.isVer 
+                 ? (
                   searchData &&
                   searchData.map((val, ind) => {
                     return (
@@ -117,7 +116,7 @@ const Productview = () => {
                             style={{ textDecoration: "none" }}
                           >
                             <img
-                              src="https://static.toiimg.com/thumb/msid-88221879,imgsize-63772,width-1000,height-562,resizemode-8/88221879.jpg"
+                              src={val.image[0].url}
                               class="card-img-top"
                               alt="..."
                             />

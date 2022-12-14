@@ -19,7 +19,8 @@ import Reset from "../pages/Forget_Password/Reset";
 import Checkout from "../pages/Checkout/Checkout";
 import History from "../pages/Order/History";
 import Feedback from "../pages/Feedback/Feedback";
-
+import Support from "../pages/Policies/Support";
+import Success from "../pages/Checkout/CheckoutSuccess/Success";
 const BasicRoutes = () => {
   return (
     <>
@@ -28,6 +29,18 @@ const BasicRoutes = () => {
           exact
           path="/"
           component={Dashboard}
+          layout={BasicLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/policies"
+          component={Support}
+          layout={BasicLayout}
+        />
+        <LoginLayoutRoute
+          exact
+          path="/success/:id"
+          component={Success}
           layout={BasicLayout}
         />
         <SimpleRoutes
@@ -48,9 +61,9 @@ const BasicRoutes = () => {
           component={Forget}
           layout={LoginLayout}
         />
-        <SimpleRoutes
+       <SimpleRoutes
           exact
-          path="/reset"
+          path="/reset/:token/:id"
           component={Reset}
           layout={LoginLayout}
         />
