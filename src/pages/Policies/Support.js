@@ -1,70 +1,69 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { Referral } from './Referral';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Referral } from "./Referral";
 // import "react-tabs/style/react-tabs.css";
-import './Support.css';
-import {Shipping} from './Shipping';
-import { Cancel } from './Cancel';
-import { Policy } from './Privacy';
-import { useHistory } from 'react-router-dom';
+import "./Support.css";
+import { Shipping } from "./Shipping";
+import { Cancel } from "./Cancel";
+import { Policy } from "./Privacy";
+import { useHistory } from "react-router-dom";
 export default function Support() {
   const history = useHistory();
   return (
-    <div className="policy" >
-      <div className='privcypolicy'>
-      <Tabs>
-        <TabList>
-          <Tab>
-            <p>Shipping Policy</p>
-          </Tab>
-          <Tab>
-            <p>Cancellation & Return</p>
-          </Tab>
-          <Tab>
-            <p>Privay Policy</p>
-          </Tab>
-          <Tab>
-            <p>Referral Terms & Conditions</p>
-          </Tab>
-        </TabList>
+    <div className="policy">
+      <div className="privcypolicy">
+        <Tabs>
+          <TabList>
+            <Tab>
+              <p>Shipping Policy</p>
+            </Tab>
+            <Tab>
+              <p>Cancellation & Return</p>
+            </Tab>
+            <Tab>
+              <p>Privay Policy</p>
+            </Tab>
+            <Tab>
+              <p>Referral Terms & Conditions</p>
+            </Tab>
+          </TabList>
 
-        <TabPanel>
-          <div className="panel-content">
-            <Shipping/>
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="panel-content">
-            <Cancel/>
-          </div>
-        </TabPanel>
-        <TabPanel>
-          <div className="panel-content">
-          <Policy/>
-          </div>
-        </TabPanel>
-      
-        <TabPanel>
-          <div className="panel-content">
-            <Referral/>
-          </div>
-        </TabPanel>
-      </Tabs>
+          <TabPanel>
+            <div className="panel-content">
+              <Shipping />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="panel-content">
+              <Cancel />
+            </div>
+          </TabPanel>
+          <TabPanel>
+            <div className="panel-content">
+              <Policy />
+            </div>
+          </TabPanel>
+
+          <TabPanel>
+            <div className="panel-content">
+              <Referral />
+            </div>
+          </TabPanel>
+        </Tabs>
       </div>
-      <div className='checkarea'>
-      <form onSubmit={() =>{
-    history.push('/checkout');
-  }}>
-      <div>
-      <input
-          type="checkbox"
-          required
-        />
-      <label>
-      I accept the terms and conditions{ " "}
-      </label>    
-      </div>
-      <button type='submit'>Proceed</button>
-      </form>
+      <div className="checkarea">
+        <form
+          onSubmit={() => {
+            history.push("/checkout");
+          }}
+        >
+          <div>
+            <input type="checkbox" required className="me-2" />
+            <label>I accept the terms and conditions </label>
+          </div>
+          <button className="btn button-blue my-3" type="submit">
+            Proceed
+          </button>
+        </form>
       </div>
     </div>
   );

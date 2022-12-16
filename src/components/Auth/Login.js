@@ -70,10 +70,10 @@ function Login() {
             <h1>Sign in</h1>
             <div className="social-container">
               <a href="#">
-                <i className="fa fa-facebook-f"></i>
+                <i className="fa fa-facebook-f color-blue"></i>
               </a>
               <a href="#">
-                <i className="fa fa-google-plus"></i>
+                <i className="fa fa-google-plus color-blue"></i>
               </a>
             </div>
             <span>or use your account</span>
@@ -93,7 +93,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            <a className="my-2" href="/forget">
+            <a className="my-2 color-blue" href="/forget">
               Forgot your password?
             </a>
             <button className="sign_button" onClick={loginFormHandler}>
@@ -106,10 +106,10 @@ function Login() {
             <h1>Create Account</h1>
             <div className="social-container">
               <a href="#">
-                <i className="fa fa-facebook-f"></i>
+                <i className="fa fa-facebook-f color-blue"></i>
               </a>
               <a href="#">
-                <i className="fa fa-google-plus"></i>
+                <i className="fa fa-google-plus color-blue"></i>
               </a>
             </div>
             <span>or use your email for registration</span>

@@ -8,7 +8,7 @@ function Category({ name, clas }) {
         <p className="mb-1">
           <i class={clas}></i>
         </p>
-        <p className="m-0">{name}</p>
+        <p className="m-0 catep">{name}</p>
       </div>
     </Link>
   );

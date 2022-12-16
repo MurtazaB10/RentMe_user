@@ -75,7 +75,7 @@ const Header = () => {
                       window.location.pathname = "/profile";
                     }}
                     type="button"
-                    class="btn btn-primary"
+                    class="btn login"
                   >
                     Profile
                   </button>
@@ -84,21 +84,17 @@ const Header = () => {
                       window.location.pathname = "/order";
                     }}
                     type="button"
-                    class="btn btn-primary"
+                    class="btn login"
                   >
                     Order
                   </button>
-                  <button
-                    onClick={logoutClick}
-                    type="button"
-                    class="btn btn-primary"
-                  >
+                  <button onClick={logoutClick} type="button" class="btn login">
                     Logout
                   </button>
                 </div>
               </div>
             ) : (
-              <Button href="/login" className="login" variant="outline-danger">
+              <Button href="/login" className="btn login">
                 Login/Signup
               </Button>
             )}

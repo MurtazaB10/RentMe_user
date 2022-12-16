@@ -25,11 +25,13 @@ function Cart() {
       setCart(res.data.data.user.cart.items);
       console.log("total");
       let t = new Number(0);
-      for (let i = 0; i < res.data.data.user.cart.items.length; i++){
+      for (let i = 0; i < res.data.data.user.cart.items.length; i++) {
         t +=
-          (res.data.data.user.cart.items[i].quantity *
-          res.data.data.user.cart.items[i].productId.rentalprice * res.data.data.user.cart.items[i].duration + res.data.data.user.cart.items[i].productId.deposit);
-        }
+          res.data.data.user.cart.items[i].quantity *
+            res.data.data.user.cart.items[i].productId.rentalprice *
+            res.data.data.user.cart.items[i].duration +
+          res.data.data.user.cart.items[i].productId.deposit;
+      }
       console.log(t);
       setTotal(t);
     } catch (error) {
@@ -139,6 +141,9 @@ function Cart() {
     display: flex;
     justify-content: space-between;
     ${mobile({ flexDirection: "column" })}
+    border: 1px solid cadetblue;
+    margin: 10px;
+    border-radius: 3px;
   `;
   const ProductDetail = styled.div`
     flex: 2;
@@ -180,8 +185,8 @@ function Cart() {
     ${mobile({ margin: "5px 15px" })}
   `;
   const ProductPrice = styled.div`
-    font-size: 30px;
-    font-weight: 200;
+    font-size: 18px;
+    font-weight: 400;
     ${mobile({ marginBottom: "20px" })}
   `;
   const Hr = styled.hr`
@@ -254,7 +259,11 @@ function Cart() {
                       </ProductDetail>
                       <PriceDetail>
                         <ProductAmountContainer>
-                          <p style={{marginTop: '1.3rem',marginRight: "1rem"}}>Quantity: </p>
+                          <p
+                            style={{ marginTop: "1.3rem", marginRight: "1rem" }}
+                          >
+                            Quantity:{" "}
+                          </p>
                           <AddIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
@@ -270,11 +279,15 @@ function Cart() {
                           />
                         </ProductAmountContainer>
                         <ProductAmountContainer>
-                          <p style={{marginTop: '1.3rem',marginRight: "1rem"}}>Duration: </p>
+                          <p
+                            style={{ marginTop: "1.3rem", marginRight: "1rem" }}
+                          >
+                            Duration:{" "}
+                          </p>
                           <AddIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              setDuration(true)
+                              setDuration(true);
                               changeDuration(val.productId._id);
                             }}
                           />
@@ -282,17 +295,19 @@ function Cart() {
                           <RemoveIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              setDuration(false)
+                              setDuration(false);
                               changeDuration(val.productId._id);
                             }}
                           />
                         </ProductAmountContainer>
                         <ProductPrice>
-                          <span style={{marginRight: "1rem"}}>Rental Price: </span>
+                          <span style={{ marginRight: "1rem" }}>
+                            Rental Price:{" "}
+                          </span>
                           ₹ {val.productId.rentalprice}
                         </ProductPrice>
                         <ProductPrice>
-                          <span style={{marginRight: "1rem"}}>Deposit: </span>
+                          <span style={{ marginRight: "1rem" }}>Deposit: </span>
                           ₹ {val.productId.deposit}
                         </ProductPrice>
                       </PriceDetail>

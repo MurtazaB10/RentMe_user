@@ -12,31 +12,39 @@
 
 /* Category CSS */
 .category {
-  border: 1px solid #e2eaf0;
+  border: 1px solid rgb(86, 135, 137);
   padding: 5px 10px 15px;
   border-radius: 10px;
   transition: all 0.2s ease-in;
   width: 150px;
   height: 90px;
   cursor: pointer;
+  color: rgb(86, 135, 137);
 }
 .category:hover {
+  background-color: rgb(86, 135, 137);
+  color: #e2eaf0;
   -webkit-box-shadow: 0px 8px 16px -1px rgba(0, 0, 0, 0.27);
   -moz-box-shadow: 0px 8px 16px -1px rgba(0, 0, 0, 0.27);
   box-shadow: 0px 8px 16px -1px rgba(0, 0, 0, 0.27);
+}
+.catep {
+  color: rgb(86, 135, 137);
+}
+.category:hover > .catep {
+  color: #e2eaf0 !important;
 }
 .category i {
   font-size: 2rem;
 }
 .category p:last-child {
   font-weight: 400;
-  color: #625a5b;
 }
 
 /* Slider CSS */
 .slider_container {
   padding: 50px 0 60px 150px;
-  background-color: #f5f7fa;
+  background-color: #ebd700 ;
 }
 
 .slider {
@@ -61,7 +69,7 @@
   font-weight: 400;
 }
 .slider .main_head::after {
-  background-color: #dc3226;
+  background-color: cadetblue;
   border-radius: 5px;
   position: absolute;
   bottom: -12px;
@@ -104,9 +112,10 @@
 .slider .slider_container .swiper_slide {
   width: 255px;
   margin: 0;
+  /* background-color: rgb(0, 0, 0, 0.8); */
   margin-right: 30px;
   padding: 20px 10px;
-  border: 1px solid #e2eaf0;
+  border: 2px solid cadetblue;
   border-radius: 2px;
   flex-shrink: 0;
   height: 100%;
@@ -141,7 +150,7 @@
 .slider .slider_container .swiper_slide ul li p {
   margin: 0;
   font-size: 12px;
-  color: #bababa;
+  color: #313131;
   font-weight: 400;
 }
 .slider .slider_container .swiper_slide ul li p span {
@@ -152,21 +161,22 @@
 .slider .slider_container .swiper_slide ul li .link {
   text-decoration: none;
   padding: 5px 15px;
-  color: #dc3226;
-  border: 1px solid #dc3226;
+  color: cadetblue;
+  border: 1px solid cadetblue;
   border-radius: 2px;
   display: block;
   margin: 5px 0;
   transition: all 0.2s ease-in;
 }
 .slider .slider_container .swiper_slide ul li .link:hover {
-  background-color: #dc3226;
+  background-color: cadetblue;
   color: white;
 }
 
 /* Advantage CSS */
 .advantage {
   padding: 80px 0;
+
 }
 
 .advantage .container {
@@ -190,7 +200,7 @@
 .advantage .container .main_head::after,
 .feedback .feedback_container .feedback_box .main_head::after {
   content: "";
-  background-color: #dc3226;
+  background-color: cadetblue;
   border-radius: 5px;
   width: 2em;
   height: 2px;
@@ -202,6 +212,7 @@
 
 .advantage .container .inner {
   margin: 30px 0 60px;
+  color: rgb(86, 135, 137);
 }
 .advantage .container .inner .bed {
   width: 60px;
@@ -209,7 +220,7 @@
 }
 .advantage .container .inner h3 {
   font-size: 18px;
-  color: #313131;
+  color: rgb(86, 135, 137);
   font-weight: 600;
   margin-top: 20px;
   margin-bottom: 10px;
@@ -217,13 +228,13 @@
 }
 .advantage .container .inner p {
   font-size: 14px;
-  color: #717171;
+  color: rgb(86, 135, 137);
   font-weight: 400;
   margin: 0 0 10px;
 }
 .advantage .container .link {
   text-align: left;
-  color: #1dbdc0;
+  color: cadetblue;
   font-size: 16px;
   text-transform: uppercase;
   font-weight: 600;
@@ -318,6 +329,7 @@
   flex-shrink: 0;
   position: relative;
   border-radius: 10px;
+  background: transparent;
 }
 .feedback
   .feedback_container

@@ -31,7 +31,8 @@ function SwiperComponent(props) {
                 </li>
                 <li>
                   <h4>
-                   {feed.user.username}<span></span>
+                    {feed.user.username}
+                    <span></span>
                   </h4>
                 </li>
               </ul>
@@ -40,9 +41,7 @@ function SwiperComponent(props) {
         </div>
         <div className="row">
           <div className="col-12">
-            <p>
-           {feed.querymessage}
-            </p>
+            <p>{feed.querymessage}</p>
           </div>
         </div>
       </div>

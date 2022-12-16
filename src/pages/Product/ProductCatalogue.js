@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
+import {
+  ProSidebar,
+  Menu,
+  MenuItem,
+  SubMenu,
+  SidebarHeader,
+  SidebarContent,
+  SidebarFooter,
+} from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./ProductCatalogue.css";
 import axios from "axios";
@@ -9,16 +17,29 @@ import ChairOutlinedIcon from "@mui/icons-material/ChairOutlined";
 import FitnessCenterOutlinedIcon from "@mui/icons-material/FitnessCenterOutlined";
 import CottageIcon from "@mui/icons-material/Cottage";
 import { Link } from "react-router-dom";
+import { SiApacheairflow } from "react-icons/si";
+import { GiAbstract050 } from "react-icons/gi";
+import {
+  FiHome,
+  FiLogOut,
+  FiArrowLeftCircle,
+  FiArrowRightCircle,
+} from "react-icons/fi";
 
 const Productview = () => {
   const [data, setData] = useState([]);
   const [searchData, setSearchData] = useState();
   const [userData, setUserData] = useState();
   const [trigger, setTrigger] = useState(true);
+  const [menuCollapse, setMenuCollapse] = useState(false);
   const [confirmationSnackbarMessage, setConfirmationSnackbarMessage] =
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
     useState(false);
+
+  const menuIconClick = () => {
+    menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
+  };
 
   async function fetchData() {
     try {
@@ -58,6 +79,13 @@ const Productview = () => {
     }
   }
 
+  const logoutClick = async (e) => {
+    e.preventDefault();
+    await axios.post("/logout");
+    localStorage.clear();
+    window.location.reload();
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -66,37 +94,62 @@ const Productview = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-3 col-1">
-            <ProSidebar>
-              <Menu iconShape="square">
-                <MenuItem
-                  icon={<ElectricBoltOutlinedIcon />}
-                  onClick={() => search("Electronics")}
-                >
-                  Electronics
-                </MenuItem>
-                <MenuItem
-                  icon={<CottageIcon />}
-                  onClick={() => search("Home Appliances")}
-                >
-                  Home Appliances
-                </MenuItem>
-                <MenuItem
-                  icon={<ChairOutlinedIcon />}
-                  onClick={() => search("Furnitures")}
-                >
-                  Furniture
-                </MenuItem>
-                <MenuItem
-                  icon={<FitnessCenterOutlinedIcon />}
-                  onClick={() => search("Fitness")}
-                >
-                  Fitness
-                </MenuItem>
-                {/* <SubMenu title="Components" icon={<DiamondIcon />}>
+            <ProSidebar collapsed={menuCollapse}>
+              <SidebarHeader>
+                <div className="logotext">
+                  {/* Icon change using menucollapse state */}
+                  <p>
+                    {menuCollapse ? <GiAbstract050 /> : <SiApacheairflow />}
+                  </p>
+                </div>
+                <div className="closemenu" onClick={menuIconClick}>
+                  {/* changing menu collapse icon on click */}
+                  {menuCollapse ? (
+                    <FiArrowRightCircle />
+                  ) : (
+                    <FiArrowLeftCircle />
+                  )}
+                </div>
+              </SidebarHeader>
+              <SidebarContent>
+                <Menu iconShape="square">
+                  <MenuItem
+                    icon={<ElectricBoltOutlinedIcon />}
+                    onClick={() => search("Electronics")}
+                  >
+                    Electronics
+                  </MenuItem>
+                  <MenuItem
+                    icon={<CottageIcon />}
+                    onClick={() => search("Home Appliances")}
+                  >
+                    Home Appliances
+                  </MenuItem>
+                  <MenuItem
+                    icon={<ChairOutlinedIcon />}
+                    onClick={() => search("Furnitures")}
+                  >
+                    Furniture
+                  </MenuItem>
+                  <MenuItem
+                    icon={<FitnessCenterOutlinedIcon />}
+                    onClick={() => search("Fitness")}
+                  >
+                    Fitness
+                  </MenuItem>
+                  {/* <SubMenu title="Components" icon={<DiamondIcon />}>
                   <MenuItem>Component 1</MenuItem>
                   <MenuItem>Component 2</MenuItem>
                 </SubMenu> */}
-              </Menu>
+                </Menu>
+              </SidebarContent>
+              <SidebarFooter>
+                <Menu iconShape="square">
+                  <MenuItem onClick={logoutClick} icon={<FiLogOut />}>
+                    Logout
+                  </MenuItem>
+                </Menu>
+              </SidebarFooter>
             </ProSidebar>
           </div>
           <div className="col-md-9 col-11">
@@ -104,8 +157,7 @@ const Productview = () => {
               <div className="row gy-4 py-5">
                 {userData &&
                 userData.email.isVer &&
-                userData.phonenumber.isVer 
-                 ? (
+                userData.phonenumber.isVer ? (
                   searchData &&
                   searchData.map((val, ind) => {
                     return (
@@ -128,19 +180,19 @@ const Productview = () => {
                             >
                               <h5 class="card-title">{val.name}</h5>
                               <p class="card-text">{val.description}</p>
-                              <p class="card-text">
+                              <p class="card-text mb-2">
                                 <b>Price: ₹ {val.rentalprice}</b>
                               </p>
                             </Link>
                             <a
-                              class="btn btn-primary"
+                              class="btn button-blue"
                               onClick={() => addCart(val._id)}
                             >
                               Add to Cart
                             </a>
                             <a
                               href="/cart"
-                              class="btn btn-primary mx-4"
+                              class="btn button-blue mx-4"
                               onClick={() => addCart(val._id)}
                             >
                               Buy Now

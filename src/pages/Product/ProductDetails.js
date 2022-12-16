@@ -24,7 +24,6 @@ function ProductDetails() {
       console.log(fil);
       for (let index = 0; index < fil[0].image.length; index++) {
         arr[index] = fil[0].image[index].url;
-        
       }
       setImage(arr);
       setData(fil);
@@ -72,16 +71,16 @@ function ProductDetails() {
           <hr />
 
           <p id="product_price">
-            <span>Deposit</span> ₹ {data && data[0].deposit}
+            <span>Deposit:</span> ₹ {data && data[0].deposit}
           </p>
           <p id="product_price">
-            <span>Amount</span> ₹ {data && data[0].rentalprice}
+            <span>Amount:</span> ₹ {data && data[0].rentalprice}
           </p>
           <hr />
           <button
             type="button"
             id="cart_btn"
-            className="btn btn-primary d-inline ml-4"
+            className="btn button-blue d-inline ml-4"
             onClick={() => addCart(data && data[0]._id)}
           >
             Add to Cart

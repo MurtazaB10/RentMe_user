@@ -15,8 +15,12 @@ import { useDispatch, useSelector } from "react-redux";
 function Dashboard() {
   const [transition1, setTransition1] = useState(0);
   const [op1, setOp1] = useState(0.5);
+  const [op, setOp] = useState(1);
+  const [c, setC] = useState(4);
   const [transition2, setTransition2] = useState(0);
   const [op2, setOp2] = useState(0.5);
+  const [c1, setC1] = useState(2);
+  const [op3, setOp3] = useState(1);
   const [prod, setProd] = useState([]);
   const [user, setUser] = useState();
   const [feedback, setFeedback] = useState([]);
@@ -99,9 +103,11 @@ function Dashboard() {
               aria-label="Previous Slide"
               onClick={() => {
                 if (transition1 != 0) {
-                  setTransition1(transition1 + 15);
+                  setTransition1(transition1 + 18);
+                  setOp(1);
+                  setC(c - 1);
                 }
-                if (transition1 == -15) {
+                if (transition1 == -18) {
                   setOp1(0.5);
                 }
               }}
@@ -115,9 +121,15 @@ function Dashboard() {
               tabIndex="0"
               aria-label="Next Slide"
               onClick={() => {
-                setTransition1(transition1 - 15);
-                setOp1(1);
+                if (c > Math.abs(prod.length - 4)) {
+                  setOp(0.5);
+                } else {
+                  setTransition1(transition1 - 18);
+                  setOp1(1);
+                  setC(c + 1);
+                }
               }}
+              style={{ opacity: op }}
             >
               <i class="fas fa-chevron-left"></i>
             </div>
@@ -238,9 +250,11 @@ function Dashboard() {
                   aria-label="Previous Slide"
                   onClick={() => {
                     if (transition2 != 0) {
-                      setTransition2(transition2 + 15);
+                      setTransition2(transition2 + 29);
+                      setC1(c1 - 1);
+                      setOp3(1);
                     }
-                    if (transition2 == -15) {
+                    if (transition2 == -29) {
                       setOp2(0.5);
                     }
                   }}
@@ -254,9 +268,14 @@ function Dashboard() {
                   tabIndex="0"
                   aria-label="Next Slide"
                   onClick={() => {
-                    setTransition2(transition2 - 15);
-                    setOp2(1);
+                    if (c1 > Math.abs(feedback.length - 1)) setOp3(0.5);
+                    else {
+                      setTransition2(transition2 - 29);
+                      setOp2(1);
+                      setC1(c1 + 1);
+                    }
                   }}
+                  style={{ opacity: op3 }}
                 >
                   <i class="fas fa-chevron-right"></i>
                 </div>

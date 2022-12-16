@@ -9,6 +9,10 @@
   justify-content: center;
   min-height: 100vh;
   background-color: transparent;
+  color: rgb(86, 135, 137);
+}
+.color-blue{
+  color: rgb(86, 135, 137);
 }
 .login_container a {
   text-decoration: none;
@@ -51,7 +55,8 @@
 }
 
 .Login .login_container .sign_button:hover {
-  background-color: red;
+  background-color: cadetblue;
+  color: #fff;
 }
 
 .login_container .form-container.sign-in-container .social-container a,
@@ -61,13 +66,22 @@
   text-decoration: none;
   margin: 15px 0;
 }
+.button-blue {
+  border: 1px solid cadetblue !important;
+  color: rgb(86, 135, 137) !important;
+  background-color: transparent !important;
+}
+.button-blue:hover {
+  background-color: cadetblue !important;
+  color: #fff !important;
+}
 
 .login_container .form-container.sign-up-container button,
 .login_container .form-container.sign-in-container button {
   border-radius: 20px;
-  border: 1px solid #ff4b2b;
-  background-color: #ff4b2b;
-  color: #ffffff;
+  border: 1px solid cadetblue;
+  background-color: transparent;
+  color: rgb(86, 135, 137);
   font-size: 12px;
   font-weight: bold;
   padding: 12px 45px;
@@ -186,9 +200,9 @@ button.ghost {
 }
 
 .overlay {
-  background: #ff416c;
-  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
-  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background: cadetblue;
+  background: -webkit-linear-gradient(to right, cadetblue, cadetblue);
+  background: linear-gradient(to right, cadetblue, cadetblue);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

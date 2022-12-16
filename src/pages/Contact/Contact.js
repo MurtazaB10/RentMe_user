@@ -146,7 +146,9 @@ function Contact() {
               <span>Your message </span>
             </div>
             <div className="inputBox w100">
-              <button type="submit">Send</button>
+              <button className="button-blue" type="submit">
+                Send
+              </button>
             </div>
           </div>
         </form>

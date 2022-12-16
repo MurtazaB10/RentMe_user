@@ -2,3 +2,40 @@
   padding: 0 !important;
   overflow: hidden;
 }
+
+.closemenu {
+  color: #ebd700;
+  position: absolute;
+  right: 10px;
+  z-index: 9999;
+  line-height: 10px;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 22px;
+  top: 10px;
+  cursor: pointer;
+  }
+
+.pro-sidebar-inner {
+  background-color: rgb(86, 135, 137) !important;
+  box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15) !important;
+}
+
+.logotext p {
+  font-size: 20px;
+  padding: 0 20px;
+  color: rgba(252, 252, 252, 0.521);
+  font-weight: bold;
+  }
+
+.pro-inner-item {
+  color: #ebd700;
+  margin: 10px 0px;
+  font-weight: bold;
+}
+
+.pro-icon-wrapper {
+  background-color: #ffff !important;
+  color: cadetblue;
+  border-radius: 3px;
+  }

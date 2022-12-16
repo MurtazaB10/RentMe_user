@@ -42,11 +42,12 @@
 .login {
   margin-left: 1.5rem;
   border-radius: 10px;
+  background-color: transparent;
   border-color: #ebd700;
   color: #ebd700;
 }
 .login:hover {
   background-color: #ebd700;
-  color: #000;
+  color: rgb(86, 135, 137);
   border-color: #ebd700;
 }

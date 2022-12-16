@@ -68,13 +68,13 @@ const Feedback = () => {
 
   return (
     <div>
-      <h1 className="text-center mt-3 fw-bold">Your Review</h1>
+      <h1 className="text-center mt-3 fw-bold color-blue">Your Review</h1>
       <div className="personal mt-5">
-        <h5 className="heading">Feedback</h5>
+        <h5 className="heading color-blue">Feedback</h5>
         <form onSubmit={updateInfor}>
           <div className="mb-3 d-flex justify-content-between formdiv">
             <div className="w-50">
-              <label htmlFor="username" className="form-label">
+              <label htmlFor="username" className="form-label color-blue">
                 Name
               </label>
               <input
@@ -86,7 +86,7 @@ const Feedback = () => {
               />
             </div>
             <div className="w-50 ms-2">
-              <label htmlFor="email" className="form-label">
+              <label htmlFor="email" className="form-label color-blue">
                 Email
               </label>
               <input
@@ -99,10 +99,10 @@ const Feedback = () => {
               />
             </div>
           </div>
-      
+
           <div className="mb-3 d-flex justify-content-between formdiv">
             <div className="w-100">
-              <label htmlFor="  details" className="form-label">
+              <label htmlFor="  details" className="form-label color-blue">
                 Feedback
               </label>
               <textarea
@@ -114,14 +114,14 @@ const Feedback = () => {
               />
             </div>
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary button-blue">
             Send
           </button>
         </form>
       </div>
       <hr />
       <div className="p-3">
-        <table class="table table-striped">
+        <table class="table table-striped color-blue">
           <thead>
             <tr>
               <th scope="col">Date</th>
@@ -130,18 +130,16 @@ const Feedback = () => {
             </tr>
           </thead>
           <tbody>
-           {userData&&userData.map((val,index)=>{
-             return  <tr key={index}>
-             <th scope="row">
-                {val.date.substring(0, 10)}
-             </th>
-             <td>
-               {val.user.username}
-             </td>
-             <td>{val.querymessage}</td>
-           </tr>
-           })}
-          
+            {userData &&
+              userData.map((val, index) => {
+                return (
+                  <tr key={index}>
+                    <th scope="row">{val.date.substring(0, 10)}</th>
+                    <td>{val.user.username}</td>
+                    <td>{val.querymessage}</td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
