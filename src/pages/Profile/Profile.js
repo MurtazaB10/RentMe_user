@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { isLength, isMatch } from "../../validation/Validation";
 import Snackbar from "../../components/Alert/SnackBar";
 import axios from "axios";
+// import { compare } from "bcrypt";
 
 const initialState = {
   username: "",
@@ -64,7 +65,8 @@ function Profile() {
   const updateInfor = (e) => {
     e.preventDefault();
     try {
-      axios.patch("/user/updateuser", data);
+      console.log(data);
+      axios.post("/user/updateuser", data);
       setConfirmationSnackbarMessage("Update Successfully!");
       setConfirmationSnackbarOpen(true);
       setTrigger(!trigger);
@@ -82,8 +84,7 @@ function Profile() {
 
   const updatePassword = async (e) => {
     e.preventDefault();
-    // console.log(user);
-    // const ismatch = await bcrypt.compare(password, user.password);
+    // const ismatch = await compare(password, userData.password);
     // if (ismatch) {
     //   setConfirmationSnackbarMessage("new password is same as the old one!");
     //   setConfirmationSnackbarOpen(true);
@@ -97,18 +98,14 @@ function Profile() {
       setConfirmationSnackbarMessage("Password did not match.");
       setConfirmationSnackbarOpen(true);
     }
-    // try {
-    //   axios.post(
-    //     "/user/reset",
-    //     { password: password },
-    //     { headers: { Authorization: token } }
-    //   );
-    //   setConfirmationSnackbarMessage("Update Successfull!");
-    //   setConfirmationSnackbarOpen(true);
-    // } catch (error) {
-    //   setConfirmationSnackbarMessage("Failed to Update!");
-    //   setConfirmationSnackbarOpen(true);
-    // }
+    try {
+      axios.post("/reset-password", { password: password, id: userData._id });
+      setConfirmationSnackbarMessage("Update Successfull!");
+      setConfirmationSnackbarOpen(true);
+    } catch (error) {
+      setConfirmationSnackbarMessage("Failed to Update!");
+      setConfirmationSnackbarOpen(true);
+    }
   };
 
   const verifyEmail = async (e) => {
@@ -182,7 +179,7 @@ function Profile() {
       });
       setConfirmationSnackbarMessage("Phone Number Verified Successfully!");
       setConfirmationSnackbarOpen(true);
-      setTrigger(!trigger);
+      setTrigger((trigger) => !trigger);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
         localStorage.clear();
@@ -383,7 +380,7 @@ function Profile() {
           </div>
         )}
       </div>
-      {userData && userData.document === undefined && (
+      {userData && userData.validation === undefined && (
         <div className="mx-md-4">
           <div className="personal verify m-5">
             <h5 className="heading heading2">Document Verification</h5>
@@ -397,6 +394,7 @@ function Profile() {
                       id="dropdownMenuButton1"
                       data-bs-toggle="dropdown"
                       aria-expanded="false"
+                      required
                     >
                       {documentType
                         ? documentType
@@ -426,6 +424,7 @@ function Profile() {
                     id="document"
                     value={document}
                     onChange={(e) => setDocument(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="w-50 ms-2">
@@ -439,6 +438,7 @@ function Profile() {
                     id="docNumber"
                     value={documentNumber}
                     onChange={(e) => setDocumentNumber(e.target.value)}
+                    required
                   />
                 </div>
               </div>

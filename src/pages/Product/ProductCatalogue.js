@@ -168,7 +168,11 @@ const Productview = () => {
                             style={{ textDecoration: "none" }}
                           >
                             <img
-                              src={val.image[0].url}
+                              src={
+                                process.env.REACT_APP_BACKEND_URL +
+                                "products/" +
+                                val.image[0]
+                              }
                               class="card-img-top"
                               alt="..."
                             />

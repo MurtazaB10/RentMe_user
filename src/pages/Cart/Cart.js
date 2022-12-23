@@ -11,10 +11,9 @@ function Cart() {
   // const basket = useSelector((state) => state.cart.cart);
   // const user = useSelector((state) => state.user.user);
   // console.log(basket);
-  const [trigger, setTrigger] = useState(true);
+  const [trigger, setTrigger] = useState();
   const [cart, setCart] = useState([]);
   const [total, setTotal] = useState(0);
-  const [duration, setDuration] = useState();
 
   const history = useHistory();
 
@@ -61,7 +60,8 @@ function Cart() {
       const res = await axios.post("/user/removecart", {
         productId: id,
       });
-      setTrigger(!trigger);
+      await fetchData();
+      // setTrigger((prev) => !prev);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
         localStorage.clear();
@@ -70,7 +70,7 @@ function Cart() {
     }
   }
 
-  async function changeDuration(id) {
+  async function changeDuration(id, duration) {
     try {
       console.log(duration);
       const res = await axios.post("/duration", {
@@ -236,14 +236,20 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            {cart.length !== 0 ? (
+            {cart && cart.length !== 0 ? (
               cart.map((val, ind) => {
                 console.log(val);
                 return (
                   <>
                     <Product key={ind}>
                       <ProductDetail>
-                        <Image src={val.productId.image[0].url} />
+                        <Image
+                          src={
+                            process.env.REACT_APP_BACKEND_URL +
+                            "products/" +
+                            val.productId.image[0]
+                          }
+                        />
                         <Details>
                           <ProductName>
                             <b>Product:</b> {val.productId.name}
@@ -287,16 +293,14 @@ function Cart() {
                           <AddIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              setDuration(true);
-                              changeDuration(val.productId._id);
+                              changeDuration(val.productId._id, true);
                             }}
                           />
                           <ProductAmount>{val.duration}</ProductAmount>
                           <RemoveIcon
                             style={{ cursor: "pointer" }}
                             onClick={() => {
-                              setDuration(false);
-                              changeDuration(val.productId._id);
+                              changeDuration(val.productId._id, false);
                             }}
                           />
                         </ProductAmountContainer>
@@ -317,7 +321,7 @@ function Cart() {
                 );
               })
             ) : (
-              <h1>Cart is Empty</h1>
+              <h1 className="text-center">Cart is Empty</h1>
             )}
           </Info>
           <Summary>

@@ -23,7 +23,7 @@ function ProductDetails() {
       let arr = [];
       console.log(fil);
       for (let index = 0; index < fil[0].image.length; index++) {
-        arr[index] = fil[0].image[index].url;
+        arr[index] = process.env.REACT_APP_BACKEND_URL + "products/" + fil[0].image[index];
       }
       setImage(arr);
       setData(fil);

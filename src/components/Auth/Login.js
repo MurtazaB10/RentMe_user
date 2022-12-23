@@ -19,25 +19,25 @@ function Login() {
 
   const history = useHistory();
   async function loginFormHandler(e) {
-    e.preventDefault();
-    const loginUserData = {
-      email,
-      password,
-    };
-    const res = await axios.post("/login", loginUserData);
-    console.log(res);
-    if (res.data.message === "Login successfully") {
+    try {
+      e.preventDefault();
+      const loginUserData = {
+        email,
+        password,
+      };
+      const res = await axios.post("/login", loginUserData);
+      console.log(res);
       localStorage.setItem("accessToken", res.data.data.accessToken);
       localStorage.setItem("refreshToken", res.data.data.refreshToken);
       setConfirmationSnackbarMessage("Login Successfull!");
       setConfirmationSnackbarOpen(true);
       history.push("/");
       window.location.reload();
-    } else {
+      setAddClass("right-panel-active");
+    } catch (error) {
       setConfirmationSnackbarMessage("Invalid email or password!");
       setConfirmationSnackbarOpen(true);
     }
-    setAddClass("right-panel-active");
   }
 
   async function signFormHandler(e) {

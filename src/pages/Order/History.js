@@ -12,7 +12,25 @@ const History = () => {
         id: user._id,
       });
       console.log(res);
-      setData(res.data.data);
+      let orders = [];
+      for (let i = 0; i < res.data.data.length; i++) {
+        let element = {};
+        element.transactionId = res.data.data[i].razorpay.paymentId;
+        element.orderId = res.data.data[i].razorpay.orderId;
+        element.orderDate = new Date(
+          res.data.data[i].createdAt
+        ).toLocaleDateString("en-US");
+        element.amount = res.data.data[i].amount;
+        let tq = 0;
+        for (let j = 0; j < res.data.data[i].cart.items.length; j++)
+          tq += res.data.data[i].cart.items[j].quantity;
+        element.quantity = tq;
+        element.returnDate = new Date(
+          res.data.data[i].returndate
+        ).toLocaleDateString("en-US");
+        orders.push(element);
+      }
+      setData(orders);
     } catch (error) {
       if (error.message === "Request failed with status code 401") {
         localStorage.clear();
@@ -34,32 +52,32 @@ const History = () => {
         sort: "asc",
       },
       {
-        label: "Image",
-        field: "image",
+        label: "Product Quantity",
+        field: "quantity",
         sort: "asc",
       },
       {
-        label: "Name",
-        field: "name",
+        label: "Amount",
+        field: "amount",
         sort: "asc",
       },
       {
-        label: "Email",
-        field: "email",
+        label: "Transaction ID",
+        field: "transactionId",
         sort: "asc",
       },
       {
-        label: "Phone No.",
-        field: "phone",
+        label: "Order Date",
+        field: "orderDate",
         sort: "asc",
       },
       {
-        label: "Address",
-        field: "Address",
+        label: "Return Date",
+        field: "returnDate",
         sort: "asc",
       },
     ],
-    rows: Data
+    rows: Data,
   };
 
   return (

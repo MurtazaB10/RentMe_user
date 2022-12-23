@@ -23,8 +23,13 @@ function SlideComponent(props) {
   };
   return (
     <div className="swiper_slide">
-      <Link to="/" target="_blank" className="text-decoration-none">
-        <img src={det.image[0].url} />
+      <Link
+        to={`/${det._id}`}
+        className="text-decoration-none"
+      >
+        <img
+          src={process.env.REACT_APP_BACKEND_URL + "products/" + det.image[0]}
+        />
         <h3>{det.name}</h3>
         <ul>
           <li>

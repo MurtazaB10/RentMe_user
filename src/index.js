@@ -4,10 +4,10 @@ import "./index.css";
 import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
 import axios from "axios";
+// require("dotenv").config();
 axios.defaults.baseURL = "http://localhost:8000/app/v1/";
 axios.defaults.headers.common["Authorization"] =
   localStorage.getItem("accessToken");
-
 ReactDOM.render(
   <React.StrictMode>
     <App />

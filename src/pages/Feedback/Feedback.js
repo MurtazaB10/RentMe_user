@@ -16,7 +16,7 @@ const Feedback = () => {
     useState("");
   const [confirmationSnackbarOpen, setConfirmationSnackbarOpen] =
     useState(false);
-  const [trigger, setTrigger] = useState("");
+  const [trigger, setTrigger] = useState(true);
   const [userData, setUserData] = useState();
   const [data, setData] = useState(initialState);
   const { username, email, productname, orderid, details } = data;
@@ -73,19 +73,7 @@ const Feedback = () => {
         <h5 className="heading color-blue">Feedback</h5>
         <form onSubmit={updateInfor}>
           <div className="mb-3 d-flex justify-content-between formdiv">
-            <div className="w-50">
-              <label htmlFor="username" className="form-label color-blue">
-                Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                name="username"
-                aria-describedby="emailHelp"
-              />
-            </div>
-            <div className="w-50 ms-2">
+            <div className="w-100">
               <label htmlFor="email" className="form-label color-blue">
                 Email
               </label>
